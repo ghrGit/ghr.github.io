@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" type="image/x-icon" href="imgs/favicon.ico" />
+     <title>Login</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/supersized.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+     <link href="style/index.css" rel="stylesheet" />
+    <!--[if lt IE 9]>
+    <script src="javaScript/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <form id="form" method="post">
+        <div class="page-container">
+            <h1 id='login'>游客Login</h1>
+
+            <input id="username" type="text" name="loginname" class="username" placeholder="userName" />
+            <input type="password" id="password" class="password" placeholder="Password" />
+            <input type="password" name="pwd" class="password" id="repwd" placeholder="重复一次" />
+            <button type="submit" class="center" id='signIn'>Sign in</button>
+            <div class="selectTx fl">
+                <img src="" class="ReplayTx" id="sImg" />
+                <span>选择头像</span>
+            </div>
+            <div class="error"><span>+</span></div>
+        </div>
+    </form>
+    <div class="connect">
+
+        <p> I love waking up in the morning and not knowing what's going to happen, or who I'm going to meet, where I'm going to wind up.</p>
+        <p>
+            我喜欢早上起来时一切都是未知的,不知会遇见什么人,会有什么样的结局。
+        </p>
+    </div>
+    <div class="foot-menu">
+        <div id="menu_list">
+            <img src="imgs/foot-icons/top.png" alt="" title="返回顶部" />
+            <img src="imgs/foot-icons/prev.png" alt="" title="后退" />
+            <img src="imgs/foot-icons/clos.png" alt="" title="关闭" />
+            <img src="imgs/foot-icons/index.png" alt="" title="首页" />
+            <img src="imgs/foot-icons/refresh.png" alt="" title="刷新" />
+        </div>
+        <div id="home"></div>
+    </div>
+   
+    <script src="javaScript/index.js"></script>
+    <script>
+        footHome();
+    </script>
+    <script src="assets/js/jquery-1.11.0.min.js"></script>
+    <script src="assets/js/supersized.3.2.7.min.js"></script>
+    <script src="assets/js/supersized-init.js"></script>
+    <script src="assets/js/scripts.js"></script>
+</body>
+
+</html>

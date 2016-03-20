@@ -1,0 +1,118 @@
+.arContent{
+	width: 630px;
+	padding: 10px 20px 20px 20px;
+	margin-left: 30px;
+	background: #fff;
+	box-shadow: 0 0 20px #333;
+
+} 
+.arContent a{
+
+   color: #39c;
+}
+.marginT{
+	margin:30px 0px 10px 0px;
+	
+}
+.post_copyright{
+     padding: 4px;
+    text-align: left;
+    color: #999;
+    border: 1px dashed #BBB;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+.t{
+	top: 52px;
+}
+
+
+
+.comments-info{
+    height: 25px;
+    padding: 8px 0px;
+    margin-top: 20px;
+    font-size: 14px;
+}
+.replayCount{
+    display: inline-block;
+    background-color:#ccc; 
+    border:1px solid #ccc;
+    border-radius: 3px;
+}
+.sort a,.commentAction a{
+    margin-left: 10px;
+    color: #999;
+}
+
+
+.sort a:hover,.article-replay:hover,.article-view:hover{
+    color:#333;
+}
+/*.sort a:visited{
+    color:#d32;
+}*/
+.replyUl{
+    overflow: hidden;
+    border-bottom:1px solid rgba(0,0,0,0.3); 
+    margin-bottom: 100px;
+}
+
+.replyUl li{
+    overflow: hidden;
+    border-top: 1px solid rgba(0,0,0,0.3);
+}
+
+.w600{
+    width: 600px;
+
+}
+.w570{
+    width: 570px;
+}
+
+.replyUl span{
+    color: #777;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.replyUl p{
+    font-size: 14px;
+    word-wrap:break-word;
+}
+
+
+.replayContentBox{
+    padding:10px 0px 4px 0px;
+    overflow: hidden;
+}
+
+.commentAction{
+    margin-top: 10px;
+}
+
+.repChildUl li{
+    width: 640px;
+}
+
+.msgChildUl  li{
+   width: 940px;
+
+}
+.w930{
+    width:930px;
+}
+.w870{
+    width:870px;
+}
+
+.wpMsginner{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+
+
