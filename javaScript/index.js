@@ -297,7 +297,8 @@ function returnTop() {
 
 
 //首页大图轮播
-// document.onreadystatechange = bannerSlider;
+             // document.onreadystatechange = bannerSlider;
+             
 function bannerSlider() {
     var sliderArr = [{ 'src': "1.jpg", 'acticleid': '#?1' }, { 'src': "2.jpg", 'acticleid': '#?2' }, { 'src': "3.jpg", 'acticleid': '#?3' }, { 'src': "4.jpg", 'acticleid': '#?4' }, { 'src': "5.jpg", 'acticleid': '#?5' }, { 'src': "6.jpg", 'acticleid': '#?6' }, { 'src': "7.jpg", 'acticleid': '#?7' }, { 'src': "8.jpg", 'acticleid': '#?8' }];
     var slider = document.getElementById('slider');
