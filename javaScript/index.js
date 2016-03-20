@@ -309,7 +309,7 @@ function bannerSlider() {
     sliderTimer(slider, sliderBtnLis);
     sliderBtnLis[0].style.opacity = '1.0';
     if (!isOldIE()) sliderBtnLis[0].style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity=100)';
-    if (document.readyState == "complete") {
+     if (document.readyState == "complete") {
         for (var i = 0; i < sliderBtnLis.length; i++) {
             sliderBtnLis[i].onmouseover = function () {
                 clearInterval(slider.timer);
@@ -321,7 +321,7 @@ function bannerSlider() {
             sliderBtnLis[i].onmouseout = function () {
                 sliderTimer(slider, sliderBtnLis);
             }
-        }
+         }
     };
 }
 
