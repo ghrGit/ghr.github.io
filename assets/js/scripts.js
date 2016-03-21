@@ -43,7 +43,8 @@ jQuery(document).ready(function() {
             return false;
         }
         if ($('#repwd').val() != password) {
-            alert('Error~'); $(this).find('.error').fadeOut('fast', function () {
+            alert('密码不一致呦~'); 
+            $(this).find('.error').fadeOut('fast', function () {
                 $(this).css('top', '195px');
             });
             $(this).find('.error').fadeIn('fast', function () {
@@ -54,7 +55,7 @@ jQuery(document).ready(function() {
 
         setCookie('userName',username, 2);
         setCookie('userPhoto',$('#sImg').attr('txName'), 2);
-        alert('Success');
+        alert('登陆成功啦~~~');
         window.close();
         return false;
     });

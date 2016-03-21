@@ -35,7 +35,7 @@
                         </li>
                         <li>
                               
-                            <a href="category.html?articleType=web%u524D%u7AEF">web前端</a>
+                            <a href="category.html?articleType=web%u524D%u7AEF" >web前端</a>
                             <div class="hover-bg"></div>
                         </li>
                         <li>
@@ -51,7 +51,7 @@
                             <div class="hover-bg"></div>
                         </li>
                         <li>
-                            <a href="msg.html">心情杂货店</a>
+                            <a href="msg.html" target="_Blank">心情杂货店</a>
                             <div class="hover-bg"></div>
                         </li>
                         <li>
@@ -228,6 +228,7 @@
     <script src="assets/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="javaScript/index.js"></script>
         <script type="text/javascript">
+          console.time('hello');
           bannerSlider();
             UpdateMoodBar();
             createArticle('article-list', 1);
@@ -252,7 +253,7 @@
                     return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;
                 }
             });
-         
+             console.timeEnd('hello');
         </script>
 
 

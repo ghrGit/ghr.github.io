@@ -3,6 +3,7 @@ var turn = 0;
 var flagPlay = false;
 var currentTime = 0;
 var audioTimeLen; ;
+var doc=document;
 var domain = "http://t.yanchengqu.com/BlogController/";
 //var domain = "http://localhost:4936/";
 var api = [
@@ -29,8 +30,8 @@ function fn() {
     audio163();
 }
 function footHome() {
-    var oHome = document.getElementById("home");
-    var aImg = document.getElementById("menu_list").getElementsByTagName("img");
+    var oHome = doc.getElementById("home");
+    var aImg = doc.getElementById("menu_list").getElementsByTagName("img");
 
     var bOff = true;
     var iR = -150;
@@ -99,9 +100,9 @@ function removeEnd(obj, fn) {
 
 //创建菜单
 function CreateNav() {
-    var lis = document.getElementById('menu-nav').getElementsByTagName('li');
-    var dvs = document.getElementById('menu-nav').getElementsByTagName('div');
-    var audios = document.getElementById('menu-nav').getElementsByTagName('audio');
+    var lis = doc.getElementById('menu-nav').getElementsByTagName('li');
+    var dvs = doc.getElementById('menu-nav').getElementsByTagName('div');
+    var audios = doc.getElementById('menu-nav').getElementsByTagName('audio');
     var colors = ['#b9d329', '#c0ebf7', '#b9d329', '#69bcf3', '#79d9f3', '#ffae5b', '#acd180', '#fab4cc', '#6cf'];
     for (var i = 0; i < lis.length; i++) {
         lis[i].index = i;
@@ -143,8 +144,8 @@ function animate(obj, y, direction, t) {
 //logo光晕
 function CreateNavLogo() {
     //设置logo 光晕动画
-    var i = document.getElementsByTagName("i")[0];
-    var logo = document.getElementById('logo');
+    var i = doc.getElementsByTagName("i")[0];
+    var logo = doc.getElementById('logo');
     var oTimer = null;
     var iLeft = -50;
     logo.onmouseover = function () {
@@ -188,14 +189,14 @@ ActiveXObject("Microsoft.XMLHTTP");
 function audio163() {
        var array = [{ "musicName": "Halo", 'musicSrc': 'music/Halo.mp3', 'singer': "Halo", 'timeLen': '149' },
     { "musicName": "我的天空", 'musicSrc': 'music/我的天空.mp3', 'singer': "南征北战", 'timeLen': '24' }];
-    var player = document.getElementById('player');
-    var play = document.getElementById('play');
+    var player = doc.getElementById('player');
+    var play = doc.getElementById('play');
     var audio163 = player.getElementsByTagName('audio')[0];
-    var next = document.getElementById('next');
-    var pre = document.getElementById('pre');
-    var time = document.getElementById('time');
+    var next = doc.getElementById('next');
+    var pre = doc.getElementById('pre');
+    var time = doc.getElementById('time');
 
-    audio163.src = array[turn].musicSrc;
+    // audio163.src = array[turn].musicSrc;
     playFn(array, audio163, time);
     updateTime(array, time, audio163)
     play.onclick = function () {
@@ -221,7 +222,7 @@ function audio163() {
 function nextFn(array, audio163, time) {
     clearInterval(time.timer);
     turn = ++turn > array.length - 1 ? 0 : turn;
-    audio163.src = array[turn].musicSrc;
+   // audio163.src = array[turn].musicSrc;
 
     audioTimeLen = array[turn].timeLen;
     updateTime(array, time, audio163);
@@ -232,7 +233,7 @@ function nextFn(array, audio163, time) {
 function preFn(array, audio163, time) {
     clearInterval(time.timer);
     turn = --turn < 0 ? array.length - 1 : turn;
-    audio163.src = array[turn].musicSrc;
+    //audio163.src = array[turn].musicSrc;
     audioTimeLen = array[turn].timeLen;
     updateTime(array, time, audio163);
     playFn(array, audio163, time);
@@ -244,7 +245,8 @@ function bar(bar, cunMusic) {
 }
 //播放音乐代码
 function playFn(array, audio163, time) {
-    document.getElementById('singer').getElementsByTagName('span')[0].innerHTML = array[turn].singer;
+    doc.getElementById('singer').getElementsByTagName('span')[0].innerHTML = array[turn].singer;
+    audio163.src = array[turn].musicSrc;
     if (isNaN(audioTimeLen))
         audioTimeLen = array[turn].timeLen;
     if (flagPlay) {
@@ -269,9 +271,9 @@ function updateTime(array, time, audio163) {
         clearInterval(time.timer);
         nextFn(array, audio163, time);
     }
-    var bar = document.getElementById('bar');
-    var circle = document.getElementById('circle');
-    circle.style.left = document.getElementById('inBar').style.width = Math.floor(bar.offsetWidth * (array[turn].timeLen - audioTimeLen) / array[turn].timeLen) + 'px';
+    var bar = doc.getElementById('bar');
+    var circle = doc.getElementById('circle');
+    circle.style.left = doc.getElementById('inBar').style.width = Math.floor(bar.offsetWidth * (array[turn].timeLen - audioTimeLen) / array[turn].timeLen) + 'px';
     time.innerHTML = formatSeconds(audioTimeLen);
 
     audioTimeLen = array[turn].timeLen - audio163.currentTime;
@@ -288,7 +290,7 @@ function formatSeconds(second) {
 //返回顶部
 function returnTop() {
     window.scrollBy(0, -200);
-    var sTop = document.body.scrollTop + document.documentElement.scrollTop
+    var sTop = doc.body.scrollTop + doc.docElement.scrollTop
     if (sTop > 0)
         setTimeout('returnTop()', 100);
 }
@@ -297,12 +299,12 @@ function returnTop() {
 
 
 //首页大图轮播
-             // document.onreadystatechange = bannerSlider;
+             // doc.onreadystatechange = bannerSlider;
              
 function bannerSlider() {
     var sliderArr = [{ 'src': "1.jpg", 'acticleid': '#?1' }, { 'src': "2.jpg", 'acticleid': '#?2' }, { 'src': "3.jpg", 'acticleid': '#?3' }, { 'src': "4.jpg", 'acticleid': '#?4' }, { 'src': "5.jpg", 'acticleid': '#?5' }, { 'src': "6.jpg", 'acticleid': '#?6' }, { 'src': "7.jpg", 'acticleid': '#?7' }, { 'src': "8.jpg", 'acticleid': '#?8' }];
-    var slider = document.getElementById('slider');
-    var sliderBtn = document.getElementById('slider-btn');
+    var slider = doc.getElementById('slider');
+    var sliderBtn = doc.getElementById('slider-btn');
     var sliderLis = slider.getElementsByTagName('li');
     var sliderBtnLis = sliderBtn.getElementsByTagName('li');
     createHtml(slider, sliderArr, "");
@@ -310,7 +312,7 @@ function bannerSlider() {
     sliderTimer(slider, sliderBtnLis);
     sliderBtnLis[0].style.opacity = '1.0';
     if (!isOldIE()) sliderBtnLis[0].style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity=100)';
-    // if (document.readyState == "complete") {
+    // if (doc.readyState == "complete") {
         for (var i = 0; i < sliderBtnLis.length; i++) {
             sliderBtnLis[i].onmouseover = function () {
                 clearInterval(slider.timer);
@@ -430,7 +432,7 @@ function createHtml(obj, arr, bigPic) {
 function createArticle(articlelist, pageIndex) {
     var typeName = GetQueryString('articleType');
     if (typeName != null) {
-        document.getElementById('type').innerHTML = '<span id="type"><a class="viewAll" href="index.html">首页 </a><i>&gt;</i><a class="viewAll" href="category.html?articleType=' + typeName + '">' + typeName + '</a></span>';
+        doc.getElementById('type').innerHTML = '<span id="type"><a class="viewAll" href="index.html">首页 </a><i>&gt;</i><a class="viewAll" href="category.html?articleType=' + typeName + '">' + typeName + '</a></span>';
         typeName = escape(typeName);
     }
     else typeName = "";
@@ -438,8 +440,8 @@ function createArticle(articlelist, pageIndex) {
     Myjax(api[0].GetList + "?typeName=" + typeName + "&pageIndex=" + pageIndex, function (arr) {
         var articleArray = JSON.parse(JSON.parse(arr).Data);
         var page = JSON.parse(arr).Page;
-        document.getElementById('paginator').innerHTML = page;
-        var as = document.getElementById("paginator").getElementsByTagName("a");
+        doc.getElementById('paginator').innerHTML = page;
+        var as = doc.getElementById("paginator").getElementsByTagName("a");
         for (var i = 0; i < as.length; i++) {
             as[i].onclick = function () {
                 var curIndex = this.getAttribute('curIndex');
@@ -453,7 +455,7 @@ function createArticle(articlelist, pageIndex) {
             str += "'><a><img src='" + articleArray[i].imgSrc + "' /></a>  <figcaption ><p>微代码</p> </figcaption> </figure></div><section>" + delHtmlTag(articleArray[i].content) + "<a class='viewAll f12' href='article.html?articleId=" + articleArray[i].articleId + "'>查看全文</a></section><div class='article-info articleMemo-info'><a href='article.html?articleId=" + articleArray[i].articleId + "'><span class='article-replay fr'>" + articleArray[i].articleReplayCount + "</span></a><a class='article-view fr'  onclick= agree(this,'article','articleId=" + articleArray[i].articleId + "')>" + articleArray[i].hot + "</a><div class='article-time arListT'><span>" + articleArray[i].articleDate + "</span><span>" + articleArray[i].wek + "</span><i></i></div></div></div></article>";
         };
 
-        document.getElementById(articlelist).innerHTML = str;
+        doc.getElementById(articlelist).innerHTML = str;
     });
 }
 function delHtmlTag(str) {
@@ -463,8 +465,8 @@ function delHtmlTag(str) {
 
 //文章目录栏 最新/最热
 function createArticleMenu(curIndex) {
-    var ul = document.getElementById('article-menu').getElementsByTagName('ul');
-    var hs = document.getElementById('article-menu').getElementsByTagName('h4');
+    var ul = doc.getElementById('article-menu').getElementsByTagName('ul');
+    var hs = doc.getElementById('article-menu').getElementsByTagName('h4');
     //目录切换
     for (var i = 0; i < hs.length; i++) {
         hs[i].index = i;
@@ -493,9 +495,9 @@ function createArticleMenu(curIndex) {
 
 //文章内容
 function createArContent() {
-    var replayCount = document.getElementById('replayCount');
-    var arContent = document.getElementById('arContent');
-    var type = document.getElementById('type');
+    var replayCount = doc.getElementById('replayCount');
+    var arContent = doc.getElementById('arContent');
+    var type = doc.getElementById('type');
     var articleId = GetQueryString('articleId');
     Myjax(api[5].GetArticalInfo + "?articleId=" + articleId, function (arrData) {
         var str = JSON.parse(JSON.parse(arrData).Data);
@@ -515,7 +517,7 @@ function createArContent() {
 //文章评论
 function createArComment(arr) {
     var articleId = GetQueryString('articleId');
-    var replyUl = document.getElementById('replyUl')
+    var replyUl = doc.getElementById('replyUl')
     var str = "";
     arr = JSON.parse(arr);
     for (var i = 0; i < arr.length; i++) {
@@ -539,7 +541,7 @@ function createArComment(arr) {
 
 //留言列表
 function createMsg(pageIndex) {
-    var replyUl = document.getElementById('replyUl')
+    var replyUl = doc.getElementById('replyUl')
     var str = "";
     Myjax(api[4].GetMsgList + "?pageSize=5&pageIndex=" + pageIndex + "&sortBy=msgTime desc", function (articleArray) {
         var arr = JSON.parse(JSON.parse(articleArray).Data);
@@ -569,8 +571,8 @@ function createMsg(pageIndex) {
 }
 //留言分页
 function getMsgPager(page) {
-    document.getElementById('paginator').innerHTML = page;
-    var as = document.getElementById("paginator").getElementsByTagName("a");
+    doc.getElementById('paginator').innerHTML = page;
+    var as = doc.getElementById("paginator").getElementsByTagName("a");
     for (var i = 0; i < as.length; i++) {
         as[i].onclick = function () {
             var curIndex = this.getAttribute('curIndex');
@@ -582,7 +584,7 @@ function getMsgPager(page) {
 }
 //最近留言
 function createComment() {
-    var comment = document.getElementById('comment');
+    var comment = doc.getElementById('comment');
 
     var str = ''
     Myjax(api[3].GetLastMsgList, function (arr) {
@@ -665,7 +667,7 @@ function UpdateMoodBar() {
 
 //获取cookie
 function getCookie(key) {
-    var arr1 = document.cookie.split('; ');
+    var arr1 = doc.cookie.split('; ');
     for (var i = 0; i < arr1.length; i++) {
         var arr2 = arr1[i].split('=');
         if (arr2[0] == key) {
@@ -704,7 +706,7 @@ function addComment() {
         },
         success: function (data) {
             if (data.State == 0) {
-                var cancleR = document.getElementById('cancleReplay');
+                var cancleR = doc.getElementById('cancleReplay');
                 cancleR.style.display == 'block' ? alert('replay Success!') : alert('submit Success!')
                 cancleR.style.display = 'none';
                 Myjax(api[5].GetArticalInfo + "?articleId=" + articleId, function (arrData) {
@@ -736,7 +738,7 @@ function addMsg() {
         },
         success: function (data) {
             if (data.State == 0) {
-                var cancleR = document.getElementById('cancleReplay');
+                var cancleR = doc.getElementById('cancleReplay');
                 cancleR.style.display == 'block' ? alert('replay Success!') : alert('submit Success!')
                 cancleR.style.display = 'none';
                 Myjax(api[4].GetMsgList + "?pageSize=5&pageIndex=1&sortBy=msgTime desc", function (articleArray) {
@@ -756,7 +758,7 @@ function addMsg() {
 function BindValue(ParentId, Depth) {
 
     if (ParentId != 0) {
-        document.getElementById('cancleReplay').style.display = 'block';
+        doc.getElementById('cancleReplay').style.display = 'block';
     }
     $('#Depth').val(Depth);
     $('#ParentId').val(ParentId);
