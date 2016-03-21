@@ -13,8 +13,8 @@ jQuery(document).ready(function() {
     $('form').submit(function(){
         var username = $(this).find('.username').val();
         var password = $(this).find('.password').val();
-
-        if(username == '') {
+        var re=/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{4,12}$/;
+        if(!re.test(username)) {
             $(this).find('.error').fadeOut('fast', function(){
                 $(this).css('top', '72px');
             });
@@ -55,7 +55,7 @@ jQuery(document).ready(function() {
         setCookie('userName',username, 2);
         setCookie('userPhoto',$('#sImg').attr('txName'), 2);
         alert('Success');
-        window.history.go(-1);
+        window.history.back();
         return false;
     });
 
