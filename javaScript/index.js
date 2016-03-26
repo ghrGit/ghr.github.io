@@ -132,39 +132,39 @@ function CreateNavLogo() {
     toMove();
 }
 
-// function Myjax (url,afterSuccess){
+function Myjax (url,afterSuccess){
 
-// $.ajax({
-// type: 'get',
-// async: true,//默认是异步
-// url: url,
-// dateType:'jsonp',
-// crossDomain: true, 
-// success: function(data){
-// afterSuccess(data);
-// }
-
-//});
-
-
-
-//}
-function Myjax(url, afterSuccess) {
-    var xml;
-    if (XMLHttpRequest) {
-        xml = new XMLHttpRequest();
-    }
-    else  {
-        xml = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xml.open("get", url, true);
-    xml.send();
-    xml.onreadystatechange = function () {
-        if (xml.readyState == 4 && xml.status == 200) {
-            afterSuccess(JSON.parse(xml.responseText));
-        }
-    }
+$.ajax({
+type: 'get',
+async: true,//默认是异步
+url: url,
+dataType:'jsonp',
+crossDomain: true, 
+success: function(data){
+afterSuccess(data);
 }
+
+});
+
+
+
+}
+// function Myjax(url, afterSuccess) {
+//     var xml;
+//     if (XMLHttpRequest) {
+//         xml = new XMLHttpRequest();
+//     }
+//     else  {
+//         xml = new ActiveXObject("Microsoft.XMLHTTP");
+//     }
+//     xml.open("get", url, true);
+//     xml.send();
+//     xml.onreadystatechange = function () {
+//         if (xml.readyState == 4 && xml.status == 200) {
+//             afterSuccess(JSON.parse(xml.responseText));
+//         }
+//     }
+// }
 // 音乐播放器
 var audio163Fn=(function(){
      var turn = 0;
