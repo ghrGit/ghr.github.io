@@ -132,27 +132,27 @@ function CreateNavLogo() {
     toMove();
 }
 
-function Myjax(url, afterSuccess) {
-    var xml;
-    if (XMLHttpRequest) {
-        xml = new XMLHttpRequest();
-    }
-   else if(typeof XDomainRequest != "undefined") {
-        // XDomainRequest for IE.
-        xml = new XDomainRequest();
+// function $.get(url, afterSuccess) {
+//     var xml;
+//     if (XMLHttpRequest) {
+//         xml = new XMLHttpRequest();
+//     }
+//    else if(typeof XDomainRequest != "undefined") {
+//         // XDomainRequest for IE.
+//         xml = new XDomainRequest();
 
-        }
-        else {
-        xml = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xml.open("get", url, true);
-    xml.send();
-    xml.onreadystatechange = function () {
-        if (xml.readyState == 4 && xml.status == 200) {
-            afterSuccess(xml.responseText);
-        }
-    }
-}
+//         }
+//         else {
+//         xml = new ActiveXObject("Microsoft.XMLHTTP");
+//     }
+//     xml.open("get", url, true);
+//     xml.send();
+//     xml.onreadystatechange = function () {
+//         if (xml.readyState == 4 && xml.status == 200) {
+//             afterSuccess(xml.responseText);
+//         }
+//     }
+// }
 // 音乐播放器
 var audio163Fn=(function(){
      var turn = 0;
@@ -420,9 +420,9 @@ function createArticle(articlelist, pageIndex) {
     }
     else typeName = "";
     var str = '';
-    Myjax(api[0].GetList + "?typeName=" + typeName + "&pageIndex=" + pageIndex, function (arr) {
-        var articleArray = JSON.parse(JSON.parse(arr).Data);
-        var page = JSON.parse(arr).Page;
+    $.get(api[0].GetList + "?typeName=" + typeName + "&pageIndex=" + pageIndex, function (arr) {
+        var articleArray = JSON.parse(arr.Data);
+        var page = arr.Page;
         doc.getElementById('paginator').innerHTML = page;
         var as = doc.getElementById("paginator").getElementsByTagName("a");
         for (var i = 0; i < as.length; i++) {
@@ -466,9 +466,9 @@ function createArticleMenu(curIndex) {
     ul[curIndex].style.display = 'block';
 
     var str = "";
-    Myjax(api[2].GetArticalTypeList + "?curIndex=" + curIndex, function (arr) {
+    $.get(api[2].GetArticalTypeList + "?curIndex=" + curIndex, function (arr) {
 
-        arr = JSON.parse(JSON.parse(arr).Data);
+        arr = JSON.parse(arr.Data);
         for (var i = 0; i < arr.length; i++) {
             str += '<li> <em>' + (i + 1) + '</em><a href="article.html?articleId=' + arr[i].articleId + '" title="' + arr[i].title + '" target="_balnk">' + arr[i].title + '</a> <span>(' + arr[i].hot + ')</span></li>'
         };
@@ -483,9 +483,9 @@ function createArContent() {
     var arContent = doc.getElementById('arContent');
     var type = doc.getElementById('type');
     var articleId = GetQueryString('articleId');
-    Myjax(api[5].GetArticalInfo + "?articleId=" + articleId, function (arrData) {
-        var str = JSON.parse(JSON.parse(arrData).Data);
-        createArComment(JSON.parse(arrData).Comment);
+    $.get(api[5].GetArticalInfo + "?articleId=" + articleId, function (arrData) {
+        var str = JSON.parse(arrData.Data);
+        createArComment(arrData.Comment);
 
         replayCount.innerHTML = "评论数:" + str[0].articleReplayCount;
 
@@ -527,9 +527,9 @@ function createArComment(arr) {
 function createMsg(pageIndex) {
     var replyUl = doc.getElementById('replyUl')
     var str = "";
-    Myjax(api[4].GetMsgList + "?pageSize=5&pageIndex=" + pageIndex + "&sortBy=msgTime desc", function (articleArray) {
-        var arr = JSON.parse(JSON.parse(articleArray).Data);
-        var page = JSON.parse(articleArray).Page;
+    $.get(api[4].GetMsgList + "?pageSize=5&pageIndex=" + pageIndex + "&sortBy=msgTime desc", function (articleArray) {
+        var arr = JSON.parse(articleArray.Data);
+        var page = articleArray.Page;
         getMsgPager(page);
         for (var i = 0; i < arr.length; i++) {
             arr[i].parent = JSON.parse(arr[i].parent);
@@ -571,8 +571,8 @@ function createComment() {
     var comment = doc.getElementById('comment');
 
     var str = ''
-    Myjax(api[3].GetLastMsgList, function (arr) {
-        arr = JSON.parse(JSON.parse(arr).Data);
+    $.get(api[3].GetLastMsgList, function (arr) {
+        arr = JSON.parse(arr.Data);
         for (var i = 0; i < arr.length; i++) {
             str += '<li><div class="authorInfo"> <img src="' + arr[i].userPhoto + '" class="fl" /><span>' + arr[i].userName + '<em>' + arr[i].commentTime + '</em></span> <a href="msg.html"><em>在</em>心情杂货店<em>留言</em></a></div><div class="commentInfo">' + replace_em(arr[i].conContent) + '</div></li>';
         };
@@ -584,7 +584,7 @@ function createComment() {
 //点赞功能
 function agree(obj, type, id) {
     var _this = obj;
-    Myjax(api[10].addHot + "?type=" + type + "&id=" + id, function (flag) {
+    $.get(api[10].addHot + "?type=" + type + "&id=" + id, function (flag) {
         if (flag)
             _this.innerHTML = parseInt(_this.innerHTML) + 1;
         else
@@ -670,7 +670,7 @@ function addComment() {
                 var cancleR = doc.getElementById('cancleReplay');
                 cancleR.style.display == 'block' ? alert('replay Success!') : alert('submit Success!')
                 cancleR.style.display = 'none';
-                Myjax(api[5].GetArticalInfo + "?articleId=" + articleId, function (arrData) {
+                $.get(api[5].GetArticalInfo + "?articleId=" + articleId, function (arrData) {
                     createArComment(JSON.parse(arrData).Comment);
                 });
                 $("#saytext").val("");
@@ -702,7 +702,7 @@ function addMsg() {
                 var cancleR = doc.getElementById('cancleReplay');
                 cancleR.style.display == 'block' ? alert('replay Success!') : alert('submit Success!')
                 cancleR.style.display = 'none';
-                Myjax(api[4].GetMsgList + "?pageSize=5&pageIndex=1&sortBy=msgTime desc", function (articleArray) {
+                $.get(api[4].GetMsgList + "?pageSize=5&pageIndex=1&sortBy=msgTime desc", function (articleArray) {
                     var page = JSON.parse(articleArray).Page;
                     getMsgPager(page);
                 });
