@@ -1,3 +1,10 @@
+@charset "utf-8";
+/*
+@name: indexCSS
+@function: for message pic
+@author: ghr
+*/
+
 figure,figcaption{
 margin: 0px;
 padding: 0px;

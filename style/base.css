@@ -1,5 +1,9 @@
-
-/* Reset */
+@charset "utf-8";
+/*
+@name: indexCSS
+@function:  Reset the browser default style
+@author: ghr
+*/
 body,html,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,header,menu,section,p,input,td,th{padding:0;margin:0;}
 body,textarea,select,input,button{font-size:12px; color:#333; font-family:Arial, Helvetica, sans-serif; -webkit-text-size-adjust:none;}
 html,body{width:100%; height:100%; border:0;}

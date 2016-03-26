@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,8 +11,11 @@
     <!--[if lt IE 9]>
     <script src="javaScript/html5shiv.js"></script>
     <![endif]-->
-</head>
-<body>
+        <!--[if lt IE 8]>
+     <script src="javaScript/json2.js"></script>
+     <![endif]-->
+ </head>
+ <body>
 
     <div class="content">
         <header class='header'>
@@ -144,7 +147,7 @@
                         </section>
                         <section class='player' id="player">
                             <audio src=""></audio>
-               
+                            
                             <img src='imgs/163.jpg' class="fl" />
                             <div class="control">
                                 <div id="singer">
@@ -193,7 +196,7 @@
     <script type="text/javascript" src="javaScript/jquery.qqFace.js"></script>
     <script type="text/javascript" src="javaScript/index.js"></script>
     <script type="text/javascript">
-  
+      
         createArContent();
         BindValue(0, 0);
         document.getElementById('cancleReplay').onclick = function () {
@@ -213,7 +216,7 @@
                 addComment();
             });
         });
-    
+        
     </script>
 </body>
 </html>

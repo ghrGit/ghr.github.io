@@ -1,4 +1,4 @@
-var photoCount=6;
+var photoCount=12;
 jQuery(document).ready(function() {
   
     var num = 0;
@@ -45,7 +45,7 @@ jQuery(document).ready(function() {
         if ($('#repwd').val() != password) {
             alert('密码不一致呦~'); 
             $(this).find('.error').fadeOut('fast', function () {
-                $(this).css('top', '195px');
+                $(this).css('top', '210px');
             });
             $(this).find('.error').fadeIn('fast', function () {
                 $('#repwd').focus();

@@ -1,8 +1,3 @@
-var currentIndex = 0;
-var turn = 0;
-var flagPlay = false;
-var currentTime = 0;
-var audioTimeLen; ;
 var doc=document;
 var domain = "http://t.yanchengqu.com/BlogController/";
 //var domain = "http://localhost:4936/";
@@ -22,87 +17,55 @@ var api = [
 ];
 
 function fn() {
-    CreateNav();
+    CreateNavFn2();
     createArticleMenu(0);
     createComment();
     CreateNavLogo();
     footHome();
-    audio163();
+    audio163Fn();
 }
-function footHome() {
-    var oHome = doc.getElementById("home");
-    var aImg = doc.getElementById("menu_list").getElementsByTagName("img");
-
-    var bOff = true;
-    var iR = -150;
-    for (var i = 0; i < aImg.length; i++) {
-        aImg[i].index = i;
-        aImg[i].onclick = function () {
-
-            this.style.transition = "0.3s";
-            this.style.WebkitTransform = "scale(2) rotate(-720deg)";
-            this.style.opacity = 0.1;
-            addEnd(this, end);
-            if (this.index == 4) window.location.reload();
-            else if (this.index == 2) window.close();
-            else if (this.index == 0) returnTop();
-            else if (this.index == 1) history.go(-1);//无效
-            else if (this.index == 3) window.location.href = 'index.html';
-
-
-        };
-    }
-
-    oHome.onclick = function () {
-        if (bOff) {
-            this.style.WebkitTransform = "rotate(-360deg) scale(1.0)";
-            for (var i = 0; i < aImg.length; i++) {
-                var oLt = toLT(iR, 90 / 4 * i);
-                aImg[i].style.transition = "0.5s " + i * 100 + "ms";
-                aImg[i].style.left = oLt.l + "px";
-                aImg[i].style.top = oLt.t + "px";
-                aImg[i].style.WebkitTransform = "scale(1) rotate(-720deg)";
-            }
-        }
-        else {
-            this.style.WebkitTransform = "rotate(0deg) scale(0.8)";
-            for (var i = 0; i < aImg.length; i++) {
-                aImg[i].style.transition = "0.5s " + (aImg.length - i - 1) * 100 + "ms";
-                aImg[i].style.left = 0 + "px";
-                aImg[i].style.top = 0 + "px";
-                aImg[i].style.WebkitTransform = "scale(1) rotate(0deg)";
-            }
-        }
-        bOff = !bOff;
+//创建菜单User 事件委托
+ function CreateNav() {
+  var menuNav=doc.getElementById('menu-nav');
+    var as = menuNav.getElementsByTagName('a');
+    var dvs = menuNav.getElementsByTagName('div');
+    var ul=menuNav.getElementsByTagName('ul')[0];
+    var audios = menuNav.getElementsByTagName('audio');
+    var colors = ['#b9d329', '#c0ebf7', '#b9d329', '#69bcf3', '#79d9f3', '#ffae5b', '#acd180', '#fab4cc', '#6cf'];
+    for (var i = 0; i < as.length; i++) {
+        as[i].index = i;
+        dvs[i].style.background = colors[i];
     };
-
+ul.onmouseover=function(ev){
+var ev=ev||event;
+var target=ev.target||ev.srcElement;
+if(target.nodeName.toLowerCase()=='a'){
+               var index = target.index;
+            //ie8以下不支持audio
+            if (isOldIE()) {
+                if (!isNaN(audios[index].duration)) {
+                    audios[index].currentTime = 0;
+                }
+                audios[index].play();
+            }
+            animate(dvs[index], 0, 'top', 2);
 }
-
-
-function end() {
-    this.style.transition = "0.1s";
-    this.style.WebkitTransform = "scale(1) rotate(-720deg)";
-    this.style.opacity = 1;
-    removeEnd(this, end);
 }
-
-function toLT(iR, iDeg) {
-    return { l: Math.round(Math.sin(iDeg / 180 * Math.PI) * iR), t: Math.round(Math.cos(iDeg / 180 * Math.PI) * iR) }
+ul.onmouseout=function(ev){
+    var ev=ev||event;
+    var target=ev.target||srcElement;
+    if(target.nodeName.toLowerCase()=='a'){
+        animate(dvs[target.index], 56, 'top', 2);
+    }
 }
-function addEnd(obj, fn) {
-    obj.addEventListener('WebkitTransitionEnd', fn, false);
-    obj.addEventListener('transitionend', fn, false);
 }
-function removeEnd(obj, fn) {
-    obj.removeEventListener('WebkitTransitionEnd', fn, false);
-    obj.removeEventListener('transitionend', fn, false);
-}
-
-//创建菜单
-function CreateNav() {
-    var lis = doc.getElementById('menu-nav').getElementsByTagName('li');
-    var dvs = doc.getElementById('menu-nav').getElementsByTagName('div');
-    var audios = doc.getElementById('menu-nav').getElementsByTagName('audio');
+//创建菜单方法2
+function CreateNavFn2() {
+    var menuNav=doc.getElementById('menu-nav');
+    var lis = menuNav.getElementsByTagName('li');
+    var dvs = menuNav.getElementsByTagName('div');
+    var ul=menuNav.getElementsByTagName('ul')[0];
+    var audios = menuNav.getElementsByTagName('audio');
     var colors = ['#b9d329', '#c0ebf7', '#b9d329', '#69bcf3', '#79d9f3', '#ffae5b', '#acd180', '#fab4cc', '#6cf'];
     for (var i = 0; i < lis.length; i++) {
         lis[i].index = i;
@@ -126,6 +89,7 @@ function CreateNav() {
         }
     };
 }
+
 //菜单动画
 function animate(obj, y, direction, t) {
     clearInterval(obj.timer);
@@ -186,57 +150,57 @@ ActiveXObject("Microsoft.XMLHTTP");
     }
 }
 // 音乐播放器
-function audio163() {
-       var array = [{ "musicName": "Halo", 'musicSrc': 'music/Halo.mp3', 'singer': "Halo", 'timeLen': '149' },
+var audio163Fn=(function(){
+     var turn = 0;
+     var flagPlay = false;
+     var currentTime = 0;
+     var audioTimeLen;
+      var time = doc.getElementById('time');
+     var audio163 = player.getElementsByTagName('audio')[0];
+    var singer=doc.getElementById('singer').getElementsByTagName('span')[0];
+    var audioImgBox=doc.getElementById('audioImgBox');
+      var num=0;
+   
+   var array = [{ "musicName": "Halo", 'musicSrc': 'music/Halo.mp3', 'singer': "Halo", 'timeLen': '149' },
     { "musicName": "我的天空", 'musicSrc': 'music/我的天空.mp3', 'singer': "南征北战", 'timeLen': '24' }];
-    var player = doc.getElementById('player');
+    
+    function audioPlay(){
+   var player = doc.getElementById('player');
     var play = doc.getElementById('play');
-    var audio163 = player.getElementsByTagName('audio')[0];
     var next = doc.getElementById('next');
     var pre = doc.getElementById('pre');
-    var time = doc.getElementById('time');
-
-    // audio163.src = array[turn].musicSrc;
-    playFn(array, audio163, time);
-    updateTime(array, time, audio163)
+     //下面兩行代码为了首次进来显示数据，但此时并未加载mp3文件   优化加载时间
+    singer.innerHTML = array[turn].singer;
+    time.innerHTML = formatSeconds(array[turn].timeLen);
     play.onclick = function () {
-
-
         this.style.backgroundPosition = !flagPlay ? '-36px -63px' : '0px 0px';
         flagPlay = !flagPlay;
-        playFn(array, audio163, time);
+        playFn();
 
     }
     next.onclick = function () {
         flagPlay = true;
         play.style.backgroundPosition = '-36px -63px';
-        nextFn(array, audio163, time);
+        nextFn();
     }
     pre.onclick = function () {
         flagPlay = true;
         play.style.backgroundPosition = '-36px -63px';
-        preFn(array, audio163, time);
+        preFn();
     }
 
 }
-function nextFn(array, audio163, time) {
+function nextFn() {
     clearInterval(time.timer);
     turn = ++turn > array.length - 1 ? 0 : turn;
-   // audio163.src = array[turn].musicSrc;
-
-    audioTimeLen = array[turn].timeLen;
-    updateTime(array, time, audio163);
-    playFn(array, audio163, time);
+    playFn();
 
 }
 
-function preFn(array, audio163, time) {
+function preFn() {
     clearInterval(time.timer);
     turn = --turn < 0 ? array.length - 1 : turn;
-    //audio163.src = array[turn].musicSrc;
-    audioTimeLen = array[turn].timeLen;
-    updateTime(array, time, audio163);
-    playFn(array, audio163, time);
+    playFn();
 
 }
 
@@ -244,21 +208,31 @@ function bar(bar, cunMusic) {
     bar.style.left = bar.style.offsetWidth
 }
 //播放音乐代码
-function playFn(array, audio163, time) {
-    doc.getElementById('singer').getElementsByTagName('span')[0].innerHTML = array[turn].singer;
-    audio163.src = array[turn].musicSrc;
-    if (isNaN(audioTimeLen))
-        audioTimeLen = array[turn].timeLen;
+function playFn() {
+    singer.innerHTML = array[turn].singer;
+      if( getFileName(audio163.src) !=getFileName(array[turn].musicSrc)){
+        audio163.src = array[turn].musicSrc;
+          audioTimeLen = array[turn].timeLen;
+         updateTime();
+
+      }else if (isNaN(audioTimeLen))
+           audioTimeLen = array[turn].timeLen;
     if (flagPlay) {
         if (!isNaN(audio163.duration))
             audio163.currentTime = currentTime;
-        time.timer = setInterval(function () { updateTime(array, time, audio163) }, 1000)
+
+        time.timer = setInterval(function () { updateTime() }, 1000)
         if (audio163.play)
             audio163.play();
+        audioImgBox.timer=setInterval(function(){
+        if(!flagPlay)
+            clearInterval(audioImgBox.timer);
+    audioImgBox.style.WebkitTransform = "rotate("+(++num)*1+"deg)";
+},50);
     }
     else {
         clearInterval(time.timer);
-        if (audio163.pause){
+            if (audio163.pause){
             audio163.pause();
             currentTime = array[turn].timeLen - audioTimeLen;
         }
@@ -266,10 +240,10 @@ function playFn(array, audio163, time) {
 }
 
 //更新音乐播放器时间以及bar
-function updateTime(array, time, audio163) {
+function updateTime() {
     if (audioTimeLen < 1) {
         clearInterval(time.timer);
-        nextFn(array, audio163, time);
+        nextFn();
     }
     var bar = doc.getElementById('bar');
     var circle = doc.getElementById('circle');
@@ -277,16 +251,20 @@ function updateTime(array, time, audio163) {
     time.innerHTML = formatSeconds(audioTimeLen);
 
     audioTimeLen = array[turn].timeLen - audio163.currentTime;
-}
-//格式化时间for 音乐
-function formatSeconds(second) {
-    var m = parseInt(second / 60);
-    m = m < 10 ? "0" + m : m;
-    var s = parseInt(second % 60);
-    s = s < 10 ? "0" + s : s;
-    return "-" + m + ":" + s;
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }
 
+// function rotateImg(num){
+//      this.style.WebkitTransform = "rotate(-360deg) scale(1.0)";
+// }
+return audioPlay;
+})();
+
+function getFileName(file){
+    //github下来的地址有编码
+    return decodeURI(file.substring((file.lastIndexOf('/')+1)));
+}
 //返回顶部
 function returnTop() {
     window.scrollBy(0, -200);
@@ -296,28 +274,50 @@ function returnTop() {
 }
 
 
-
+//格式化时间for 音乐
+function formatSeconds(second) {
+    var m = parseInt(second / 60);
+    m = m < 10 ? "0" + m : m;
+    var s = parseInt(second % 60);
+    s = s < 10 ? "0" + s : s;
+    return "-" + m + ":" + s;
+}
 
 //首页大图轮播
-             // doc.onreadystatechange = bannerSlider;
-             
-function bannerSlider() {
+// doc.onreadystatechange = bannerSlider;
+          
+var bannerSlider=(function(){
+  var currentIndex = 0;
+  var imgLoadFlag=false;
+       var sliderBtnImg ; 
+      var imgLength;
+     
+   function slider() {
     var sliderArr = [{ 'src': "1.jpg", 'acticleid': '#?1' }, { 'src': "2.jpg", 'acticleid': '#?2' }, { 'src': "3.jpg", 'acticleid': '#?3' }, { 'src': "4.jpg", 'acticleid': '#?4' }, { 'src': "5.jpg", 'acticleid': '#?5' }, { 'src': "6.jpg", 'acticleid': '#?6' }, { 'src': "7.jpg", 'acticleid': '#?7' }, { 'src': "8.jpg", 'acticleid': '#?8' }];
     var slider = doc.getElementById('slider');
     var sliderBtn = doc.getElementById('slider-btn');
     var sliderLis = slider.getElementsByTagName('li');
     var sliderBtnLis = sliderBtn.getElementsByTagName('li');
+    sliderBtnImg = sliderBtn.getElementsByTagName('img');
+    
     createHtml(slider, sliderArr, "");
     createHtml(sliderBtn, sliderArr);
     sliderTimer(slider, sliderBtnLis);
+    imgLength=sliderBtnImg.length;
     sliderBtnLis[0].style.opacity = '1.0';
     if (!isOldIE()) sliderBtnLis[0].style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity=100)';
-    // if (doc.readyState == "complete") {
+
+   // if (doc.readyState == "complete") {
         for (var i = 0; i < sliderBtnLis.length; i++) {
+   sliderBtnImg[i].onload = function() {
+          
+                imgLength--;
+           
+            };
             sliderBtnLis[i].onmouseover = function () {
+                 if(imgLength!=0) return;
                 clearInterval(slider.timer);
                 currentIndex = this.getAttribute('index');
-
                 fnSlider(slider, sliderBtnLis, "");
 
             }
@@ -326,17 +326,16 @@ function bannerSlider() {
             }
         // }
     };
+
 }
-
-
 function sliderTimer(slider, sliderBtnLis) {
   
         slider.timer = setInterval(function () {
+            console.log(imgLength);
+            if(imgLength==0){
             ++currentIndex;
-
-            fnSlider(slider, sliderBtnLis);
-
-
+         fnSlider(slider, sliderBtnLis);
+     }
         }, 3000);
     
 }
@@ -390,28 +389,11 @@ function marQuee(obj, speed, moveFlag) {
             clearInterval(timer);
     }, speed)
 }
-//判断iE版本,是否小于等于ie8
-function isOldIE() {
-    var DEFAULT_VERSION = '8.0';
-    var userAgent = navigator.userAgent;
-    var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
-    var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera;
-    var ua = userAgent.toLowerCase();
+return slider;
+})();
 
-    if (isIE) {
-        var safariVersion = ua.match(/msie ([\d.]+)/)[1];
-        if (safariVersion <= DEFAULT_VERSION)
-            return false; //小于ie8
-        else return true;
-    }
-    else {
-        return true;
-    }
-}
-//获取属性值
-function getStyle(obj, attr) {
-    return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
-}
+
+
 
 //banner大图html代码
 function createHtml(obj, arr, bigPic) {
@@ -432,7 +414,7 @@ function createHtml(obj, arr, bigPic) {
 function createArticle(articlelist, pageIndex) {
     var typeName = GetQueryString('articleType');
     if (typeName != null) {
-        doc.getElementById('type').innerHTML = '<span id="type"><a class="viewAll" href="index.html">首页 </a><i>&gt;</i><a class="viewAll" href="category.html?articleType=' + typeName + '">' + typeName + '</a></span>';
+        doc.getElementById('type').innerHTML = '<span id="type"><a class="viewAll" href="index.html">首页 </a><i>&gt;</i><a class="viewAll" href="category.html?articleType=' + escape(typeName) + '">' + typeName + '</a></span>';
         typeName = escape(typeName);
     }
     else typeName = "";
@@ -451,8 +433,9 @@ function createArticle(articlelist, pageIndex) {
 
         for (var i = 0; i < articleArray.length; i++) {
             str += "<article class='article-content'><div class='article'><div class='article-title'><h3><a href='#'>" + articleArray[i].title + "</a></h3><img src='" + articleArray[i].userPhoto + "' alt='" + articleArray[i].userName + "' class='fr'/><span class='fr'>" + articleArray[i].userName + "</span> </div><div class='clear'><figure class='";
-            i % 2 == 0 ? str += 'arimg1' : str += 'arimg2';
-            str += "'><a><img src='" + articleArray[i].imgSrc + "' /></a>  <figcaption ><p>微代码</p> </figcaption> </figure></div><section>" + delHtmlTag(articleArray[i].content) + "<a class='viewAll f12' href='article.html?articleId=" + articleArray[i].articleId + "'>查看全文</a></section><div class='article-info articleMemo-info'><a href='article.html?articleId=" + articleArray[i].articleId + "'><span class='article-replay fr'>" + articleArray[i].articleReplayCount + "</span></a><a class='article-view fr'  onclick= agree(this,'article','articleId=" + articleArray[i].articleId + "')>" + articleArray[i].hot + "</a><div class='article-time arListT'><span>" + articleArray[i].articleDate + "</span><span>" + articleArray[i].wek + "</span><i></i></div></div></div></article>";
+            //i % 2 == 0 ? str += 'arimg1' : str += 'arimg2';
+             str += 'arimg1' ;
+            str += "'><a href='article.html?articleId=" + articleArray[i].articleId + "'><img src='" + articleArray[i].imgSrc + "' /></a>  <figcaption ><p>微代码</p> </figcaption> </figure></div><section>" + delHtmlTag(articleArray[i].content) + "<a class='viewAll f12' href='article.html?articleId=" + articleArray[i].articleId + "'>查看全文</a></section><div class='article-info articleMemo-info'><a href='article.html?articleId=" + articleArray[i].articleId + "'><span class='article-replay fr'>" + articleArray[i].articleReplayCount + "</span></a><a class='article-view fr'  onclick= agree(this,'article','articleId=" + articleArray[i].articleId + "')>" + articleArray[i].hot + "</a><div class='article-time arListT'><span>" + articleArray[i].articleDate + "</span><span>" + articleArray[i].wek + "</span><i></i></div></div></div></article>";
         };
 
         doc.getElementById(articlelist).innerHTML = str;
@@ -662,29 +645,6 @@ function UpdateMoodBar() {
     }
 };
 
-
-
-
-//获取cookie
-function getCookie(key) {
-    var arr1 = doc.cookie.split('; ');
-    for (var i = 0; i < arr1.length; i++) {
-        var arr2 = arr1[i].split('=');
-        if (arr2[0] == key) {
-            return unescape(arr2[1]);
-        }
-    }
-}
-
-
-//留言表情转换
-function replace_em(str) {
-    str = str.replace(/\</g, '&lt;');
-    str = str.replace(/\>/g, '&gt;');
-    str = str.replace(/\n/g, '<br/>');
-    str = str.replace(/\[em_([0-9]*)\]/g, '<img src="imgs/arclist/$1.gif" border="0" />');
-    return str;
-}
 //增加评论
 function addComment() {
     if (getCookie('userName') == null || getCookie('userPhoto') == null) {
@@ -753,6 +713,103 @@ function addMsg() {
     $.ajax(options);
     return false;
 }
+//留言表情转换
+function replace_em(str) {
+    str = str.replace(/\</g, '&lt;');
+    str = str.replace(/\>/g, '&gt;');
+    str = str.replace(/\n/g, '<br/>');
+    str = str.replace(/\[em_([0-9]*)\]/g, '<img src="imgs/arclist/$1.gif" border="0" />');
+    return str;
+}
+
+//底部导航
+var footHome=(function(){
+function footHomeFn() {
+    var oHome = doc.getElementById("home");
+    var aImg = doc.getElementById("menu_list").getElementsByTagName("img");
+    var bOff = true;
+    var iR = -150;
+    for (var i = 0; i < aImg.length; i++) {
+        aImg[i].index = i;
+        aImg[i].onclick = function () {
+            this.style.transition = "0.3s";
+            this.style.WebkitTransform = "scale(2) rotate(-720deg)";
+            this.style.opacity = 0.1;
+            addEnd(this, end);
+            if (this.index == 4) window.location.reload();
+            else if (this.index == 2) window.close();
+            else if (this.index == 0) returnTop();
+            else if (this.index == 1) history.go(-1);//无效
+            else if (this.index == 3) window.location.href = 'index.html';
+        };
+    }
+
+    oHome.onclick = function () {
+        if (bOff) {
+            this.style.WebkitTransform = "rotate(-360deg) scale(1.0)";
+            for (var i = 0; i < aImg.length; i++) {
+                var oLt = toLT(iR, 90 / 4 * i);
+                aImg[i].style.transition = "0.5s " + i * 100 + "ms";
+                aImg[i].style.left = oLt.l + "px";
+                aImg[i].style.top = oLt.t + "px";
+                aImg[i].style.WebkitTransform = "scale(1) rotate(-720deg)";
+            }
+        }
+        else {
+            this.style.WebkitTransform = "rotate(0deg) scale(0.8)";
+            for (var i = 0; i < aImg.length; i++) {
+                aImg[i].style.transition = "0.5s " + (aImg.length - i - 1) * 100 + "ms";
+                aImg[i].style.left = 0 + "px";
+                aImg[i].style.top = 0 + "px";
+                aImg[i].style.WebkitTransform = "scale(1) rotate(0deg)";
+            }
+        }
+        bOff = !bOff;
+    };
+}
+function end() {
+    this.style.transition = "0.1s";
+    this.style.WebkitTransform = "scale(1) rotate(-720deg)";
+    this.style.opacity = 1;
+    removeEnd(this, end);
+}
+
+function toLT(iR, iDeg) {
+    return { l: Math.round(Math.sin(iDeg / 180 * Math.PI) * iR), t: Math.round(Math.cos(iDeg / 180 * Math.PI) * iR) }
+}
+function addEnd(obj, fn) {
+    obj.addEventListener('WebkitTransitionEnd', fn, false);
+    obj.addEventListener('transitionend', fn, false);
+}
+function removeEnd(obj, fn) {
+    obj.removeEventListener('WebkitTransitionEnd', fn, false);
+    obj.removeEventListener('transitionend', fn, false);
+}
+return footHomeFn;
+})();
+
+//判断iE版本,是否小于等于ie8
+function isOldIE() {
+    var DEFAULT_VERSION = '8.0';
+    var userAgent = navigator.userAgent;
+    var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
+    var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera;
+    var ua = userAgent.toLowerCase();
+
+    if (isIE) {
+        var safariVersion = ua.match(/msie ([\d.]+)/)[1];
+        if (safariVersion <= DEFAULT_VERSION)
+            return false; //小于ie8
+        else return true;
+    }
+    else {
+        return true;
+    }
+}
+//获取属性值
+function getStyle(obj, attr) {
+    return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+}
 
 //绑定hidden数据
 function BindValue(ParentId, Depth) {
@@ -764,12 +821,19 @@ function BindValue(ParentId, Depth) {
     $('#ParentId').val(ParentId);
 
 }
-
-
 function GetQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
     if (r != null) return unescape(r[2]); return null;
 }
 
-
+//获取cookie
+function getCookie(key) {
+    var arr1 = doc.cookie.split('; ');
+    for (var i = 0; i < arr1.length; i++) {
+        var arr2 = arr1[i].split('=');
+        if (arr2[0] == key) {
+            return unescape(arr2[1]);
+        }
+    }
+}

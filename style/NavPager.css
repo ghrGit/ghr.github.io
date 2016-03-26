@@ -1,4 +1,11 @@
-﻿.paginator
+﻿@charset "utf-8";
+/*
+@name: indexCSS
+@function: for pager
+@author: ghr
+*/
+
+.paginator
 {
     font: 12px Arial, Helvetica, sans-serif;
     padding: 10px 20px 10px 0;

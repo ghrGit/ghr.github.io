@@ -1,15 +1,14 @@
 ﻿<!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <link rel="shortcut icon" type="image/x-icon" href="imgs/favicon.ico" />
-     <title>Login</title>
-    <link rel="stylesheet" href="assets/css/reset.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="style/base.css">
     <link rel="stylesheet" href="assets/css/supersized.css">
     <link rel="stylesheet" href="assets/css/style.css">
-     <link href="style/index.css" rel="stylesheet" />
+    <link href="style/index.css" rel="stylesheet" />
     <!--[if lt IE 9]>
     <script src="javaScript/html5shiv.js"></script>
     <![endif]-->
@@ -17,15 +16,15 @@
 <body>
     <form id="form" method="post">
         <div class="page-container">
-            <h1 id='login'>游客Login</h1>
+            <h1 id='login'>Login</h1>
 
-            <input id="username" type="text" name="loginname" class="username" placeholder="userName" />
+            <input id="username" type="text" name="loginname" class="username" placeholder="userName limit letters and digits" />
             <input type="password" id="password" class="password" placeholder="Password" />
-            <input type="password" name="pwd" class="password" id="repwd" placeholder="重复一次" />
+            <input type="password" name="pwd" class="password" id="repwd" placeholder="repeat pwd" />
             <button type="submit" class="center" id='signIn'>Sign in</button>
             <div class="selectTx fl">
-                <img src="" class="ReplayTx" id="sImg" />
-                <span>选择头像</span>
+                <img src="" class="replayTx" id="sImg" />
+                <span>choose your avatar</span>
             </div>
             <div class="error"><span>+</span></div>
         </div>
@@ -47,12 +46,11 @@
         </div>
         <div id="home"></div>
     </div>
-   
     <script src="javaScript/index.js"></script>
     <script>
         footHome();
     </script>
-    <script src="assets/js/jquery-1.11.0.min.js"></script>
+    <script src="javaScript/jquery.min.js"></script>
     <script src="assets/js/supersized.3.2.7.min.js"></script>
     <script src="assets/js/supersized-init.js"></script>
     <script src="assets/js/scripts.js"></script>
