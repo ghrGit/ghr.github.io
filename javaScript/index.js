@@ -139,7 +139,7 @@ type: 'get',
 async: true,//默认是异步
 url: url,
 dateType:'jsonp',
-
+crossDomain: true, 
 success: function(data){
 afterSuccess(data);
 }
