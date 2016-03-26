@@ -26,7 +26,7 @@ function fn() {
 }
 //创建菜单User 事件委托
  function CreateNav() {
-  var menuNav=doc.getElementById('menu-nav');
+   var menuNav=doc.getElementById('menu-nav');
     var as = menuNav.getElementsByTagName('a');
     var dvs = menuNav.getElementsByTagName('div');
     var ul=menuNav.getElementsByTagName('ul')[0];
@@ -155,12 +155,7 @@ var audio163Fn=(function(){
      var flagPlay = false;
      var currentTime = 0;
      var audioTimeLen;
-      var time = doc.getElementById('time');
-     var audio163 = player.getElementsByTagName('audio')[0];
-    var songName=doc.getElementById('singer').getElementsByTagName('span')[0];
-    var singerName=doc.getElementById('singer').getElementsByTagName('span')[1];
-
-    var audioImgBox=doc.getElementById('audioImgBox');
+    var time,audio163,songName, singerName,audioImgBox;
       var num=0;
    
    var array = [
@@ -169,7 +164,12 @@ var audio163Fn=(function(){
       { "songName": 'The truth that you leave', 'musicSrc': 'http://m2.music.126.net/XQo6IAe0In6D5ckPbhpmqA==/2053887720694509.mp3', 'singerName': "Pianoboy", 'timeLen': '223','cover':'http://p4.music.126.net/9idkdzbel_-lYBP7Dv_dVQ==/102254581395289.jpg?param=90y90'}];
     
     function audioPlay(){
-   var player = doc.getElementById('player');
+        time = doc.getElementById('time');
+audio163 = doc.getElementById('player').getElementsByTagName('audio')[0];
+songName=doc.getElementById('singer').getElementsByTagName('span')[0];
+singerName=doc.getElementById('singer').getElementsByTagName('span')[1];
+audioImgBox=doc.getElementById('audioImgBox');
+
     var play = doc.getElementById('play');
     var next = doc.getElementById('next');
     var pre = doc.getElementById('pre');
