@@ -497,7 +497,7 @@ function createArContent() {
     var articleId = GetQueryString('articleId');
     Myjax(api[5].GetArticalInfo + "?articleId=" + articleId, function (arrData) {
         var str = JSON.parse(arrData.Data);
-        createArComment(JSON.parse(arrData).Comment);
+        createArComment(arrData.Comment);
 
         replayCount.innerHTML = "评论数:" + str[0].articleReplayCount;
 
@@ -541,7 +541,7 @@ function createMsg(pageIndex) {
     var str = "";
     Myjax(api[4].GetMsgList + "?pageSize=5&pageIndex=" + pageIndex + "&sortBy=msgTime desc", function (articleArray) {
         var arr = JSON.parse(articleArray.Data);
-        var page = JSON.parse(articleArray).Page;
+        var page = JSON.parse(articleArray.Page);
         getMsgPager(page);
         for (var i = 0; i < arr.length; i++) {
             arr[i].parent = JSON.parse(arr[i].parent);
