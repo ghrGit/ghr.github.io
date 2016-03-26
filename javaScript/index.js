@@ -137,9 +137,13 @@ function Myjax(url, afterSuccess) {
     if (XMLHttpRequest) {
         xml = new XMLHttpRequest();
     }
-    else {
-        xml = new
-ActiveXObject("Microsoft.XMLHTTP");
+   else if(typeof XDomainRequest != "undefined") {
+        // XDomainRequest for IE.
+        xml = new XDomainRequest();
+
+        }
+        else {
+        xml = new ActiveXObject("Microsoft.XMLHTTP");
     }
     xml.open("get", url, true);
     xml.send();
