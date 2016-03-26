@@ -173,11 +173,13 @@
                     </div>
                     <div class='player' id="player">
                         <audio src="" type="audio/mpeg"></audio>
-                        <!--  <div class="music-box"> -->
-                         <img src='imgs/163.jpg'  id='audioImgBox' class="fl"/>
+                         <img src=''  id='audioImgBox' class="fl"/>
                         <div class="control">
-                            <div id="singer">
-                                <span>网易云音乐，听见好时光</span>
+                               <div id="singer"  class='songName'>
+                               <marquee scrollamount="2" onmouseover="this.stop()" onmouseout="this.start()">
+                                <span>网易云音乐，听见好时光 </span>
+                               <span class='sub'>0</span>
+                           </marquee>
                             </div>
                             <div id="bar">
                                 <span id="circle"></span>
@@ -190,8 +192,6 @@
 
                                 <span id="next"></span>
                                 <span class='singList'></span>
-
-                                <!--      </div> -->
                             </div>
                         </div>
                     </div>

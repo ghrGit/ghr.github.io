@@ -157,21 +157,23 @@ var audio163Fn=(function(){
      var audioTimeLen;
       var time = doc.getElementById('time');
      var audio163 = player.getElementsByTagName('audio')[0];
-    var singer=doc.getElementById('singer').getElementsByTagName('span')[0];
+    var songName=doc.getElementById('singer').getElementsByTagName('span')[0];
+    var singerName=doc.getElementById('singer').getElementsByTagName('span')[1];
+
     var audioImgBox=doc.getElementById('audioImgBox');
       var num=0;
    
-   var array = [{ "musicName": "Halo", 'musicSrc': 'music/Halo.mp3', 'singer': "Halo", 'timeLen': '149' },
-    { "musicName": "我的天空", 'musicSrc': 'music/我的天空.mp3', 'singer': "南征北战", 'timeLen': '24' }];
+   var array = [
+  { "songName": 'My Soul', 'musicSrc': 'http://m2.music.126.net/drBbwuN31fi0V9ifqEkFPw==/5634997092422975.mp3', 'singerName': "July", 'timeLen': '230','cover': 'http://p3.music.126.net/NFl1s5Hl3E37dCaFIDHfNw==/727876697598920.jpg?param=90y90'},
+    { "songName": 'Somewhere', 'musicSrc': 'http://m2.music.126.net/DZnwbr2cA26ZaEDAzBqnpg==/5639395138942171.mp3', 'singerName': "July", 'timeLen': '229','cover': 'http://p3.music.126.net/wpk6nSJhIhmQTzCq7oh_Hg==/731175232477827.jpg?param=90y90'},
+      { "songName": 'The truth that you leave', 'musicSrc': 'http://m2.music.126.net/XQo6IAe0In6D5ckPbhpmqA==/2053887720694509.mp3', 'singerName': "Pianoboy", 'timeLen': '223','cover':'http://p4.music.126.net/9idkdzbel_-lYBP7Dv_dVQ==/102254581395289.jpg?param=90y90'}];
     
     function audioPlay(){
    var player = doc.getElementById('player');
     var play = doc.getElementById('play');
     var next = doc.getElementById('next');
     var pre = doc.getElementById('pre');
-     //下面兩行代码为了首次进来显示数据，但此时并未加载mp3文件   优化加载时间
-    singer.innerHTML = array[turn].singer;
-    time.innerHTML = formatSeconds(array[turn].timeLen);
+    playFn();
     play.onclick = function () {
         this.style.backgroundPosition = !flagPlay ? '-36px -63px' : '0px 0px';
         flagPlay = !flagPlay;
@@ -209,7 +211,9 @@ function bar(bar, cunMusic) {
 }
 //播放音乐代码
 function playFn() {
-    singer.innerHTML = array[turn].singer;
+    songName.innerHTML = array[turn].songName;
+    singerName.innerHTML=array[turn].singerName;
+    audioImgBox.src=array[turn].cover;
       if( getFileName(audio163.src) !=getFileName(array[turn].musicSrc)){
         audio163.src = array[turn].musicSrc;
           audioTimeLen = array[turn].timeLen;
@@ -227,7 +231,7 @@ function playFn() {
         audioImgBox.timer=setInterval(function(){
         if(!flagPlay)
             clearInterval(audioImgBox.timer);
-    audioImgBox.style.WebkitTransform = "rotate("+(++num)*1+"deg)";
+         audioImgBox.style.WebkitTransform = "rotate("+(++num)*1+"deg)";
 },50);
     }
     else {
@@ -249,15 +253,11 @@ function updateTime() {
     var circle = doc.getElementById('circle');
     circle.style.left = doc.getElementById('inBar').style.width = Math.floor(bar.offsetWidth * (array[turn].timeLen - audioTimeLen) / array[turn].timeLen) + 'px';
     time.innerHTML = formatSeconds(audioTimeLen);
-
-    audioTimeLen = array[turn].timeLen - audio163.currentTime;
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////
+   audioTimeLen = array[turn].timeLen - audio163.currentTime;
 
 }
 
-// function rotateImg(num){
-//      this.style.WebkitTransform = "rotate(-360deg) scale(1.0)";
-// }
+
 return audioPlay;
 })();
 
@@ -306,8 +306,6 @@ var bannerSlider=(function(){
     imgLength=sliderBtnImg.length;
     sliderBtnLis[0].style.opacity = '1.0';
     if (!isOldIE()) sliderBtnLis[0].style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity=100)';
-
-   // if (doc.readyState == "complete") {
         for (var i = 0; i < sliderBtnLis.length; i++) {
    sliderBtnImg[i].onload = function() {
           
@@ -324,7 +322,6 @@ var bannerSlider=(function(){
             sliderBtnLis[i].onmouseout = function () {
                 sliderTimer(slider, sliderBtnLis);
             }
-        // }
     };
 
 }
@@ -336,7 +333,7 @@ function sliderTimer(slider, sliderBtnLis) {
             ++currentIndex;
          fnSlider(slider, sliderBtnLis);
      }
-        }, 3000);
+        }, 5000);
     
 }
 //banner 滑动
