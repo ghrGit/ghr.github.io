@@ -14,33 +14,33 @@ var api = [
     { Login: domain + "api/User/login.api", type: "post" },
     { addHot: domain + "api/ArticalPart/AddHot.api", type: "get" }
 
-];
+    ];
 
-function fn() {
-    CreateNavFn2();
-    createArticleMenu(0);
-    createComment();
-    CreateNavLogo();
-    footHome();
-    audio163Fn();
-}
+    function fn() {
+        CreateNavFn2();
+        createArticleMenu(0);
+        createComment();
+        CreateNavLogo();
+        footHome();
+        audio163Fn();
+    }
 //创建菜单User 事件委托
- function CreateNav() {
-   var menuNav=doc.getElementById('menu-nav');
-    var as = menuNav.getElementsByTagName('a');
-    var dvs = menuNav.getElementsByTagName('div');
-    var ul=menuNav.getElementsByTagName('ul')[0];
-    var audios = menuNav.getElementsByTagName('audio');
-    var colors = ['#b9d329', '#c0ebf7', '#b9d329', '#69bcf3', '#79d9f3', '#ffae5b', '#acd180', '#fab4cc', '#6cf'];
-    for (var i = 0; i < as.length; i++) {
-        as[i].index = i;
-        dvs[i].style.background = colors[i];
-    };
+function CreateNav() {
+ var menuNav=doc.getElementById('menu-nav');
+ var as = menuNav.getElementsByTagName('a');
+ var dvs = menuNav.getElementsByTagName('div');
+ var ul=menuNav.getElementsByTagName('ul')[0];
+ var audios = menuNav.getElementsByTagName('audio');
+ var colors = ['#b9d329', '#c0ebf7', '#b9d329', '#69bcf3', '#79d9f3', '#ffae5b', '#acd180', '#fab4cc', '#6cf'];
+ for (var i = 0; i < as.length; i++) {
+    as[i].index = i;
+    dvs[i].style.background = colors[i];
+};
 ul.onmouseover=function(ev){
-var ev=ev||event;
-var target=ev.target||ev.srcElement;
-if(target.nodeName.toLowerCase()=='a'){
-               var index = target.index;
+    var ev=ev||event;
+    var target=ev.target||ev.srcElement;
+    if(target.nodeName.toLowerCase()=='a'){
+     var index = target.index;
             //ie8以下不支持audio
             if (isOldIE()) {
                 if (!isNaN(audios[index].duration)) {
@@ -49,15 +49,15 @@ if(target.nodeName.toLowerCase()=='a'){
                 audios[index].play();
             }
             animate(dvs[index], 0, 'top', 2);
-}
-}
-ul.onmouseout=function(ev){
-    var ev=ev||event;
-    var target=ev.target||srcElement;
-    if(target.nodeName.toLowerCase()=='a'){
-        animate(dvs[target.index], 56, 'top', 2);
+        }
     }
-}
+    ul.onmouseout=function(ev){
+        var ev=ev||event;
+        var target=ev.target||srcElement;
+        if(target.nodeName.toLowerCase()=='a'){
+            animate(dvs[target.index], 56, 'top', 2);
+        }
+    }
 }
 //创建菜单方法2
 function CreateNavFn2() {
@@ -134,62 +134,79 @@ function CreateNavLogo() {
 
 function Myjax (url,afterSuccess){
 
-$.ajax({
-type: 'get',
+    $.ajax({
+        type: 'get',
 async: true,//默认是异步
 url: url,
 dataType:'jsonp',
 crossDomain: true, 
 success: function(data){
-afterSuccess(data);
+    afterSuccess(data);
 }
 
 });
 
-
-
 }
-// function Myjax(url, afterSuccess) {
-//     var xml;
-//     if (XMLHttpRequest) {
-//         xml = new XMLHttpRequest();
-//     }
-//     else  {
-//         xml = new ActiveXObject("Microsoft.XMLHTTP");
-//     }
-//     xml.open("get", url, true);
-//     xml.send();
-//     xml.onreadystatechange = function () {
-//         if (xml.readyState == 4 && xml.status == 200) {
-//             afterSuccess(JSON.parse(xml.responseText));
-//         }
-//     }
-// }
+
 // 音乐播放器
 var audio163Fn=(function(){
-     var turn = 0;
-     var flagPlay = false;
-     var currentTime = 0;
-     var audioTimeLen;
-    var time,audio163,songName, singerName,audioImgBox;
-      var num=0;
+   var turn = 0;
+   var flagPlay = false;
+   var currentTime;//所剩时间
+   var time,audio163,songName, singerName,audioImgBox,bar ,circle;
+   var num=0;
    
    var array = [
-  { "songName": 'My Soul', 'musicSrc': 'http://m2.music.126.net/drBbwuN31fi0V9ifqEkFPw==/5634997092422975.mp3', 'singerName': "July", 'timeLen': '230','cover': 'http://p3.music.126.net/NFl1s5Hl3E37dCaFIDHfNw==/727876697598920.jpg?param=90y90'},
-    { "songName": 'Somewhere', 'musicSrc': 'http://m2.music.126.net/DZnwbr2cA26ZaEDAzBqnpg==/5639395138942171.mp3', 'singerName': "July", 'timeLen': '229','cover': 'http://p3.music.126.net/wpk6nSJhIhmQTzCq7oh_Hg==/731175232477827.jpg?param=90y90'},
-      { "songName": 'The truth that you leave', 'musicSrc': 'http://m2.music.126.net/XQo6IAe0In6D5ckPbhpmqA==/2053887720694509.mp3', 'singerName': "Pianoboy", 'timeLen': '223','cover':'http://p4.music.126.net/9idkdzbel_-lYBP7Dv_dVQ==/102254581395289.jpg?param=90y90'}];
-    
-    function audioPlay(){
-        time = doc.getElementById('time');
-audio163 = doc.getElementById('player').getElementsByTagName('audio')[0];
-songName=doc.getElementById('singer').getElementsByTagName('span')[0];
-singerName=doc.getElementById('singer').getElementsByTagName('span')[1];
-audioImgBox=doc.getElementById('audioImgBox');
+   { "songName": 'My Soul', 'musicSrc': 'http://m2.music.126.net/drBbwuN31fi0V9ifqEkFPw==/5634997092422975.mp3', 'singerName': "July", 'timeLen': '230','cover': 'http://p3.music.126.net/NFl1s5Hl3E37dCaFIDHfNw==/727876697598920.jpg?param=90y90'},
+   { "songName": 'Somewhere', 'musicSrc': 'http://m2.music.126.net/DZnwbr2cA26ZaEDAzBqnpg==/5639395138942171.mp3', 'singerName': "July", 'timeLen': '229','cover': 'http://p3.music.126.net/wpk6nSJhIhmQTzCq7oh_Hg==/731175232477827.jpg?param=90y90'},
+   { "songName": 'The truth that you leave', 'musicSrc': 'http://m2.music.126.net/XQo6IAe0In6D5ckPbhpmqA==/2053887720694509.mp3', 'singerName': "Pianoboy", 'timeLen': '223','cover':'http://p4.music.126.net/9idkdzbel_-lYBP7Dv_dVQ==/102254581395289.jpg?param=90y90'}];
 
+   function audioPlay(){
+    time = doc.getElementById('time');
+    audio163 = doc.getElementById('player').getElementsByTagName('audio')[0];
+    songName=doc.getElementById('singer').getElementsByTagName('span')[0];
+    singerName=doc.getElementById('singer').getElementsByTagName('span')[1];
+    audioImgBox=doc.getElementById('audioImgBox');
     var play = doc.getElementById('play');
     var next = doc.getElementById('next');
     var pre = doc.getElementById('pre');
+    circle = doc.getElementById('circle');
+    bar = doc.getElementById('bar');
     playFn();
+    circle.onmousedown = function(ev){
+        var ev = ev || window.event;
+        disX = ev.clientX - circle.offsetLeft;
+        
+        document.onmousemove = function(ev){
+            var ev = ev || window.event;
+            
+            var L = ev.clientX - disX;
+            
+            if(L<0){
+                L = 0;
+            }
+            else if(L>bar.offsetWidth - circle.offsetWidth){
+                L = bar.offsetWidth - circle.offsetWidth;
+            }
+            
+            circle.style.left = L + 'px';
+            
+            
+            var scale = L/(bar.offsetWidth - circle.offsetWidth);
+            
+            audio163.currentTime = scale * array[turn].timeLen;
+           currentTime=array[turn].timeLen - audio163.currentTime;
+           circle.style.left = doc.getElementById('inBar').style.width = Math.floor(bar.offsetWidth * (array[turn].timeLen - currentTime) / array[turn].timeLen) + 'px';
+            
+            updateTime();
+            
+        };
+        document.onmouseup = function(){
+            document.onmousemove = null;
+        };
+        return false;
+    };
+    
     play.onclick = function () {
         this.style.backgroundPosition = !flagPlay ? '-36px -63px' : '0px 0px';
         flagPlay = !flagPlay;
@@ -222,55 +239,50 @@ function preFn() {
 
 }
 
-function bar(bar, cunMusic) {
-    bar.style.left = bar.style.offsetWidth
-}
 //播放音乐代码
 function playFn() {
     songName.innerHTML = array[turn].songName;
     singerName.innerHTML='-'+array[turn].singerName;
     audioImgBox.src=array[turn].cover;
-      if( getFileName(audio163.src) !=getFileName(array[turn].musicSrc)){
+    if( getFileName(audio163.src) !=getFileName(array[turn].musicSrc)){
         audio163.src = array[turn].musicSrc;
-          audioTimeLen = array[turn].timeLen;
-         updateTime();
+        currentTime = array[turn].timeLen;
+        updateTime();
+    }
+       
+       
 
-      }else if (isNaN(audioTimeLen))
-           audioTimeLen = array[turn].timeLen;
     if (flagPlay) {
         if (!isNaN(audio163.duration))
-            audio163.currentTime = currentTime;
+            audio163.currentTime = array[turn].timeLen-currentTime;
 
         time.timer = setInterval(function () { updateTime() }, 1000)
         if (audio163.play)
             audio163.play();
         audioImgBox.timer=setInterval(function(){
-        if(!flagPlay)
-            clearInterval(audioImgBox.timer);
-         audioImgBox.style.WebkitTransform = "rotate("+(++num)*1+"deg)";
-},50);
+            if(!flagPlay)
+                clearInterval(audioImgBox.timer);
+            audioImgBox.style.WebkitTransform = "rotate("+(++num)*1+"deg)";
+        },50);
     }
     else {
         clearInterval(time.timer);
-            if (audio163.pause){
+        if (audio163.pause){
             audio163.pause();
-            currentTime = array[turn].timeLen - audioTimeLen;
+            
         }
     }
 }
 
 //更新音乐播放器时间以及bar
 function updateTime() {
-    if (audioTimeLen < 1) {
+    if (currentTime < 1&&flagPlay) {
         clearInterval(time.timer);
         nextFn();
     }
-    var bar = doc.getElementById('bar');
-    var circle = doc.getElementById('circle');
-    circle.style.left = doc.getElementById('inBar').style.width = Math.floor(bar.offsetWidth * (array[turn].timeLen - audioTimeLen) / array[turn].timeLen) + 'px';
-    time.innerHTML = formatSeconds(audioTimeLen);
-   audioTimeLen = array[turn].timeLen - audio163.currentTime;
-
+     circle.style.left = doc.getElementById('inBar').style.width = Math.floor(bar.offsetWidth * (array[turn].timeLen - currentTime) / array[turn].timeLen) + 'px';
+    time.innerHTML = formatSeconds(currentTime);
+    currentTime = array[turn].timeLen - audio163.currentTime;
 }
 
 
@@ -301,14 +313,14 @@ function formatSeconds(second) {
 
 //首页大图轮播
 // doc.onreadystatechange = bannerSlider;
-          
+
 var bannerSlider=(function(){
   var currentIndex = 0;
   var imgLoadFlag=false;
-       var sliderBtnImg ; 
-      var imgLength;
-     
-   function slider() {
+  var sliderBtnImg ; 
+  var imgLength;
+
+  function slider() {
     var sliderArr = [{ 'src': "1.jpg", 'acticleid': '#?1' }, { 'src': "2.jpg", 'acticleid': '#?2' }, { 'src': "3.jpg", 'acticleid': '#?3' }, { 'src': "4.jpg", 'acticleid': '#?4' }, { 'src': "5.jpg", 'acticleid': '#?5' }, { 'src': "6.jpg", 'acticleid': '#?6' }, { 'src': "7.jpg", 'acticleid': '#?7' }, { 'src': "8.jpg", 'acticleid': '#?8' }];
     var slider = doc.getElementById('slider');
     var sliderBtn = doc.getElementById('slider-btn');
@@ -322,33 +334,33 @@ var bannerSlider=(function(){
     imgLength=sliderBtnImg.length;
     sliderBtnLis[0].style.opacity = '1.0';
     if (!isOldIE()) sliderBtnLis[0].style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity=100)';
-        for (var i = 0; i < sliderBtnLis.length; i++) {
-   sliderBtnImg[i].onload = function() {
-          
-                imgLength--;
-           
-            };
-            sliderBtnLis[i].onmouseover = function () {
-                 if(imgLength!=0) return;
-                clearInterval(slider.timer);
-                currentIndex = this.getAttribute('index');
-                fnSlider(slider, sliderBtnLis, "");
+    for (var i = 0; i < sliderBtnLis.length; i++) {
+     sliderBtnImg[i].onload = function() {
 
-            }
-            sliderBtnLis[i].onmouseout = function () {
-                sliderTimer(slider, sliderBtnLis);
-            }
+        imgLength--;
+
     };
+    sliderBtnLis[i].onmouseover = function () {
+       if(imgLength!=0) return;
+       clearInterval(slider.timer);
+       currentIndex = this.getAttribute('index');
+       fnSlider(slider, sliderBtnLis, "");
+
+   }
+   sliderBtnLis[i].onmouseout = function () {
+    sliderTimer(slider, sliderBtnLis);
+}
+};
 
 }
 function sliderTimer(slider, sliderBtnLis) {
-  
-        slider.timer = setInterval(function () {
-            console.log(imgLength);
+
+    slider.timer = setInterval(function () {
+            // console.log(imgLength);
             if(imgLength==0){
-            ++currentIndex;
-         fnSlider(slider, sliderBtnLis);
-     }
+                ++currentIndex;
+                fnSlider(slider, sliderBtnLis);
+            }
         }, 5000);
     
 }
@@ -447,8 +459,8 @@ function createArticle(articlelist, pageIndex) {
         for (var i = 0; i < articleArray.length; i++) {
             str += "<article class='article-content'><div class='article'><div class='article-title'><h3><a href='#'>" + articleArray[i].title + "</a></h3><img src='" + articleArray[i].userPhoto + "' alt='" + articleArray[i].userName + "' class='fr'/><span class='fr'>" + articleArray[i].userName + "</span> </div><div class='clear'><figure class='";
             //i % 2 == 0 ? str += 'arimg1' : str += 'arimg2';
-             str += 'arimg1' ;
-             str += "'><a href='article.html?articleId=" + articleArray[i].articleId + "'><img src='" + articleArray[i].imgSrc + "' /></a>  <figcaption ><p>微代码</p> </figcaption> </figure></div><section>" + delHtmlTag(articleArray[i].content) + "<a class='viewAll f12' href='article.html?articleId=" + articleArray[i].articleId + "'>查看全文</a></section><div class='article-info articleMemo-info'><a  class='article-replay fr' href='article.html?articleId=" + articleArray[i].articleId + "'>" + articleArray[i].articleReplayCount + "</a><a class='article-view fr'  onclick= agree(this,'article','articleId=" + articleArray[i].articleId + "')><span>" + articleArray[i].hot + "</span><span class='add1'>+1</span></a><div class='article-time arListT'><span>" + articleArray[i].articleDate + "</span><span>" + articleArray[i].wek + "</span><i></i></div></div></div></article>";
+            str += 'arimg1' ;
+            str += "'><a href='article.html?articleId=" + articleArray[i].articleId + "'><img src='" + articleArray[i].imgSrc + "' /></a>  <figcaption ><p>微代码</p> </figcaption> </figure></div><section>" + delHtmlTag(articleArray[i].content) + "<a class='viewAll f12' href='article.html?articleId=" + articleArray[i].articleId + "'>查看全文</a></section><div class='article-info articleMemo-info'><a  class='article-replay fr' href='article.html?articleId=" + articleArray[i].articleId + "'>" + articleArray[i].articleReplayCount + "</a><a class='article-view fr'  onclick= agree(this,'article','articleId=" + articleArray[i].articleId + "')><span>" + articleArray[i].hot + "</span><span class='add1'>+1</span></a><div class='article-time arListT'><span>" + articleArray[i].articleDate + "</span><span>" + articleArray[i].wek + "</span><i></i></div></div></div></article>";
         };
 
         doc.getElementById(articlelist).innerHTML = str;
@@ -597,18 +609,18 @@ function createComment() {
 function agree(obj, type, id) {
     var _this = obj;
 
-   var spanNum=_this.getElementsByTagName('span')[0];
-      var add1=_this.getElementsByTagName('span')[1];
+    var spanNum=_this.getElementsByTagName('span')[0];
+    var add1=_this.getElementsByTagName('span')[1];
     Myjax(api[10].addHot + "?type=" + type + "&id=" + id, function (flag) {
         if (flag){
             spanNum.innerHTML =parseInt(spanNum.innerHTML) + 1;
-           add1.style.visibility='visible';
-        opacity(add1, 1, 0);
-        doMove(add1,3,'top', -30, function() {
-                    add1.style.top = 0;
-                    opacity(add1,10,100);
-                    add1.style.visibility='hidden';
-        });
+            add1.style.visibility='visible';
+            opacity(add1, 1, 0);
+            doMove(add1,3,'top', -30, function() {
+                add1.style.top = 0;
+                opacity(add1,10,100);
+                add1.style.visibility='hidden';
+            });
         }
 
         else
@@ -622,9 +634,9 @@ function UpdateMoodBar() {
     var oUl = oDiv.find('ul');
     var iH = 0;
     var arrData = [
-        { 'time': 4, 'title': '有的人浅薄，有的人金玉其表败絮其中。有一天 你会遇到一个彩虹般绚烂的人，当你遇到这个人后，会觉得其他人都只是浮云而已。' },
-        { 'time': 5, 'title': "常写代码多看书，常写博客多总结" },
-        { 'time': 6, 'title': '每天进步一点点~' }
+    { 'time': 4, 'title': '有的人浅薄，有的人金玉其表败絮其中。有一天 你会遇到一个彩虹般绚烂的人，当你遇到这个人后，会觉得其他人都只是浮云而已。' },
+    { 'time': 5, 'title': "常写代码多看书，常写博客多总结" },
+    { 'time': 6, 'title': '每天进步一点点~' }
 
     ];
     var str = '';
@@ -749,21 +761,21 @@ function replace_em(str) {
 
 //底部导航
 var footHome=(function(){
-function footHomeFn() {
-    var oHome = doc.getElementById("home");
-    var aImg = doc.getElementById("menu_list").getElementsByTagName("img");
-    var bOff = true;
-    var iR = -150;
-    for (var i = 0; i < aImg.length; i++) {
-        aImg[i].index = i;
-        aImg[i].onclick = function () {
-            this.style.transition = "0.3s";
-            this.style.WebkitTransform = "scale(2) rotate(-720deg)";
-            this.style.opacity = 0.1;
-            addEnd(this, end);
-            if (this.index == 4) window.location.reload();
-            else if (this.index == 2) window.close();
-            else if (this.index == 0) returnTop();
+    function footHomeFn() {
+        var oHome = doc.getElementById("home");
+        var aImg = doc.getElementById("menu_list").getElementsByTagName("img");
+        var bOff = true;
+        var iR = -150;
+        for (var i = 0; i < aImg.length; i++) {
+            aImg[i].index = i;
+            aImg[i].onclick = function () {
+                this.style.transition = "0.3s";
+                this.style.WebkitTransform = "scale(2) rotate(-720deg)";
+                this.style.opacity = 0.1;
+                addEnd(this, end);
+                if (this.index == 4) window.location.reload();
+                else if (this.index == 2) window.close();
+                else if (this.index == 0) returnTop();
             else if (this.index == 1) history.go(-1);//无效
             else if (this.index == 3) window.location.href = 'index.html';
         };
@@ -842,7 +854,7 @@ function doMove(obj, num, attr, target, endFn) {
     num = parseInt( getStyle(obj, attr) ) < target ? num : -num;
     
     obj.timer = setInterval(function() {
-        
+
         var speed = parseInt( getStyle(obj, attr) ) + num;
         
         if (speed > target && num > 0 || speed < target && num < 0) {
@@ -862,13 +874,13 @@ function doMove(obj, num, attr, target, endFn) {
 
 
 function opacity(obj, num, target, endFn) {
-    
+
     clearInterval( obj.opacity );
     
     num = Math.floor(getStyle( obj, 'opacity' )*100) < target ? num : -num;
     
     obj.opacity = setInterval(function () {
-    
+
         var speed = Math.floor(getStyle( obj, 'opacity' )*100) + num;
         
         if (speed > target && num > 0 || speed < target && num < 0) {
