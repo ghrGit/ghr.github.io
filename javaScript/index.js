@@ -228,7 +228,7 @@ function bar(bar, cunMusic) {
 //播放音乐代码
 function playFn() {
     songName.innerHTML = array[turn].songName;
-    singerName.innerHTML=array[turn].singerName;
+    singerName.innerHTML='-'+array[turn].singerName;
     audioImgBox.src=array[turn].cover;
       if( getFileName(audio163.src) !=getFileName(array[turn].musicSrc)){
         audio163.src = array[turn].musicSrc;
@@ -448,7 +448,7 @@ function createArticle(articlelist, pageIndex) {
             str += "<article class='article-content'><div class='article'><div class='article-title'><h3><a href='#'>" + articleArray[i].title + "</a></h3><img src='" + articleArray[i].userPhoto + "' alt='" + articleArray[i].userName + "' class='fr'/><span class='fr'>" + articleArray[i].userName + "</span> </div><div class='clear'><figure class='";
             //i % 2 == 0 ? str += 'arimg1' : str += 'arimg2';
              str += 'arimg1' ;
-            str += "'><a href='article.html?articleId=" + articleArray[i].articleId + "'><img src='" + articleArray[i].imgSrc + "' /></a>  <figcaption ><p>微代码</p> </figcaption> </figure></div><section>" + delHtmlTag(articleArray[i].content) + "<a class='viewAll f12' href='article.html?articleId=" + articleArray[i].articleId + "'>查看全文</a></section><div class='article-info articleMemo-info'><a href='article.html?articleId=" + articleArray[i].articleId + "'><span class='article-replay fr'>" + articleArray[i].articleReplayCount + "</span></a><a class='article-view fr'  onclick= agree(this,'article','articleId=" + articleArray[i].articleId + "')>" + articleArray[i].hot + "</a><div class='article-time arListT'><span>" + articleArray[i].articleDate + "</span><span>" + articleArray[i].wek + "</span><i></i></div></div></div></article>";
+             str += "'><a href='article.html?articleId=" + articleArray[i].articleId + "'><img src='" + articleArray[i].imgSrc + "' /></a>  <figcaption ><p>微代码</p> </figcaption> </figure></div><section>" + delHtmlTag(articleArray[i].content) + "<a class='viewAll f12' href='article.html?articleId=" + articleArray[i].articleId + "'>查看全文</a></section><div class='article-info articleMemo-info'><a  class='article-replay fr' href='article.html?articleId=" + articleArray[i].articleId + "'>" + articleArray[i].articleReplayCount + "</a><a class='article-view fr'  onclick= agree(this,'article','articleId=" + articleArray[i].articleId + "')><span>" + articleArray[i].hot + "</span><span class='add1'>+1</span></a><div class='article-time arListT'><span>" + articleArray[i].articleDate + "</span><span>" + articleArray[i].wek + "</span><i></i></div></div></div></article>";
         };
 
         doc.getElementById(articlelist).innerHTML = str;
@@ -459,14 +459,14 @@ function delHtmlTag(str) {
 }
 
 
-//文章目录栏 最新/最热
+//文章目录栏 选项卡
 function createArticleMenu(curIndex) {
     var ul = doc.getElementById('article-menu').getElementsByTagName('ul');
     var hs = doc.getElementById('article-menu').getElementsByTagName('h4');
     //目录切换
     for (var i = 0; i < hs.length; i++) {
         hs[i].index = i;
-        hs[i].onmouseover = function () {
+        hs[i].onclick = function () {
             createArticleMenu(this.index);
         };
     }
@@ -501,7 +501,7 @@ function createArContent() {
 
         replayCount.innerHTML = "评论数:" + str[0].articleReplayCount;
 
-        arContent.innerHTML = "<h3>" + str[0].title + "</h3><article>" + str[0].content + "</article><div class='article-info marginT'><span class='article-replay fr'><a href='#'>" + str[0].articleReplayCount + "</a></span><a class='article-view fr' onclick=agree(this,\'article\','articleId=" + str[0].articleId + "')>" + str[0].hot + "</a><div class='article-time t'> <span>" + str[0].articleDate + "</span><span>" + str[0].wek + "</span></div></div> <section class='post_copyright'><h4>版权归 <a href='#' title='ghr'>" + str[0].userName + "</a> 所有</h4><p>本文标题：<a href='article.html?articleId=" + str[0].articleId + "' title='" + str[0].title + "'>" + str[0].title + "</a><br>转载请务必注明出处，小生将不胜感激，谢谢! 喜欢本文或觉得本文对您有帮助，请分享给您的朋友 ^_^</p> </section>";
+        arContent.innerHTML = "<h3>" + str[0].title + "</h3><article>" + str[0].content + "</article><div class='article-info marginT'><span class='article-replay fr'>" + str[0].articleReplayCount + "</span><a class='article-view fr' onclick=agree(this,\'article\','articleId=" + str[0].articleId + "')><span>" + str[0].hot + "</span><span class='add1'>+1</span></a><div class='article-time t'> <span>" + str[0].articleDate + "</span><span>" + str[0].wek + "</span></div></div> <section class='post_copyright'><h4>版权归 <a href='#' title='ghr'>" + str[0].userName + "</a> 所有</h4><p>本文标题：<a href='article.html?articleId=" + str[0].articleId + "' title='" + str[0].title + "'>" + str[0].title + "</a><br>转载请务必注明出处，小生将不胜感激，谢谢! 喜欢本文或觉得本文对您有帮助，请分享给您的朋友 ^_^</p> </section>";
         type.innerHTML = '<span id="type"><a class="viewAll" href="index.html">首页 </a><i>&gt;</i><a class="viewAll" href="category.html?articleType=' + escape(str[0].typeName) + '">' + str[0].typeName + '</a><i>&gt;</i>' + str[0].title + '</span>';
     });
 
@@ -519,7 +519,7 @@ function createArComment(arr) {
     for (var i = 0; i < arr.length; i++) {
         arr[i].parent = JSON.parse(arr[i].parent);
         var child = JSON.parse(arr[i].child);
-        str += '<li><div class="replayContentBox"><img src="' + arr[i].parent[0].userPhoto + '" class="replayTx fl"  /> <div class="w600 fr" ><span>' + arr[i].parent[0].userName + '</span><p> ' + replace_em(arr[i].parent[0].conContent) + '</p><div class="commentAction"><span >' + arr[i].parent[0].commentTime + '</span> <a class="article-replay" href="#inputBox" title="回复" onclick=BindValue(' + arr[i].parent[0].commentId + ',2)>回复</a><a class="article-view" onclick=agree(this,"comment","commentId=' + arr[i].parent[0].commentId + '")>' + arr[i].parent[0].hot + '</a></div></div> </div>';
+        str += '<li><div class="replayContentBox"><img src="' + arr[i].parent[0].userPhoto + '" class="replayTx fl"  /> <div class="w600 fr" ><span>' + arr[i].parent[0].userName + '</span><p> ' + replace_em(arr[i].parent[0].conContent) + '</p><div class="commentAction"><span >' + arr[i].parent[0].commentTime + '</span> <a class="article-replay" href="#inputBox" title="回复" onclick=BindValue(' + arr[i].parent[0].commentId + ',2)>回复</a><a class="article-view" onclick=agree(this,"comment","commentId=' + arr[i].parent[0].commentId + '")><span>' + arr[i].parent[0].hot + '</span><span class="add1">+1</span></a></div></div> </div>';
         if (child.length > 0) {
             str += '<ul class="repChildUl fr" >';
             for (var k = 0; k < child.length; k++) {
@@ -541,18 +541,18 @@ function createMsg(pageIndex) {
     var str = "";
     Myjax(api[4].GetMsgList + "?pageSize=5&pageIndex=" + pageIndex + "&sortBy=msgTime desc", function (articleArray) {
         var arr = JSON.parse(articleArray.Data);
-        var page = JSON.parse(articleArray.Page);
+        var page = articleArray.Page;
         getMsgPager(page);
         for (var i = 0; i < arr.length; i++) {
             arr[i].parent = JSON.parse(arr[i].parent);
             var child = JSON.parse(arr[i].child);
             // str += '<li><div class="replayContentBox"> <img src="' + arr[i].parent[0].userPhoto + '" class="replayTx fl"  /><div class="w930 fr" ><span>' + arr[i].parent[0].userName + '</span> <p>' + replace_em(arr[i].parent[0].conContent) + '</p><div class="commentAction"><span >' + arr[i].parent[0].commentTime + '</span><a class="article-replay" title="回复" index="' + arr[i].parent[0].MsgId + '">回复</a> <a class="article-view" onclick=agree(this,"msg","msgId=' + arr[i].parent[0].MsgId + ')>' + arr[i].parent[0].hot + '</a></div></div> </div>';
-            str += "<li><div class='replayContentBox'> <img src='" + arr[i].parent[0].userPhoto + "' class='replayTx fl'  /><div class='w930 fr' ><span>" + arr[i].parent[0].userName + "</span> <p>" + replace_em(arr[i].parent[0].conContent) + "</p><div class='commentAction'><span >" + arr[i].parent[0].commentTime + "</span><a class='article-replay' title='回复' href='#inputBox' onclick=BindValue(" + arr[i].parent[0].MsgId + ",2)>回复</a> <a class='article-view' onclick=agree(this,'msg','msgId=" + arr[i].parent[0].MsgId + "')>" + arr[i].parent[0].hot + "</a></div></div> </div>";
+            str += "<li><div class='replayContentBox'> <img src='" + arr[i].parent[0].userPhoto + "' class='replayTx fl'  /><div class='w930 fr' ><span>" + arr[i].parent[0].userName + "</span> <p>" + replace_em(arr[i].parent[0].conContent) + "</p><div class='commentAction'><span >" + arr[i].parent[0].commentTime + "</span><a class='article-replay' title='回复' href='#inputBox' onclick=BindValue(" + arr[i].parent[0].MsgId + ",2)>回复</a> <a class='article-view' onclick=agree(this,'msg','msgId=" + arr[i].parent[0].MsgId + "')><span>" + arr[i].parent[0].hot + "</span><span class='add1'>+1</span></a></div></div> </div>";
             if (child.length > 0) {
                 str += '<ul class="msgChildUl fr" >';
                 for (var k = 0; k < child.length; k++) {
 
-                    str += "<li><div class='replayContentBox'> <img src='" + child[k].userPhoto + "' class='replayTx fl' /><div class='w870 fr' ><span> " + child[k].userName + "</span><p>" + replace_em(child[k].conContent) + "</p><div class='commentAction'><span >" + child[k].commentTime + "</span> <a class='article-replay'  href='#inputBox' onclick=BindValue(" + arr[i].parent[0].MsgId + ",2)>回复</a> <a class='article-view' onclick=agree(this,'Msg','MsgId=" + child[k].MsgId + "')>" + child[k].hot + "</a></div></div></div></li>";
+                    str += "<li><div class='replayContentBox'> <img src='" + child[k].userPhoto + "' class='replayTx fl' /><div class='w870 fr' ><span> " + child[k].userName + "</span><p>" + replace_em(child[k].conContent) + "</p><div class='commentAction'><span >" + child[k].commentTime + "</span> <a class='article-replay'  href='#inputBox' onclick=BindValue(" + arr[i].parent[0].MsgId + ",2)>回复</a> <a class='article-view' onclick=agree(this,'Msg','MsgId=" + child[k].MsgId + "')><span>" + child[k].hot + "</span><span class='add1'>+1</span></a></div></div></div></li>";
 
                 }
                 str += '</ul >'
@@ -596,9 +596,21 @@ function createComment() {
 //点赞功能
 function agree(obj, type, id) {
     var _this = obj;
+
+   var spanNum=_this.getElementsByTagName('span')[0];
+      var add1=_this.getElementsByTagName('span')[1];
     Myjax(api[10].addHot + "?type=" + type + "&id=" + id, function (flag) {
-        if (flag)
-            _this.innerHTML = parseInt(_this.innerHTML) + 1;
+        if (flag){
+            spanNum.innerHTML =parseInt(spanNum.innerHTML) + 1;
+           add1.style.visibility='visible';
+        opacity(add1, 1, 0);
+        doMove(add1,3,'top', -30, function() {
+                    add1.style.top = 0;
+                    opacity(add1,10,100);
+                    add1.style.visibility='hidden';
+        });
+        }
+
         else
             alert("buhaoyisi~");
 
@@ -611,8 +623,8 @@ function UpdateMoodBar() {
     var iH = 0;
     var arrData = [
         { 'time': 4, 'title': '有的人浅薄，有的人金玉其表败絮其中。有一天 你会遇到一个彩虹般绚烂的人，当你遇到这个人后，会觉得其他人都只是浮云而已。' },
-        { 'time': 5, 'title': " You got a dream, you gotta protect it. People can't do something themselves,they wanna tell you you can't do it.If you want something, go get it. Period." },
-        { 'time': 6, 'title': '愿得一人心，白首不分离' }
+        { 'time': 5, 'title': "常写代码多看书，常写博客多总结" },
+        { 'time': 6, 'title': '每天进步一点点~' }
 
     ];
     var str = '';
@@ -823,7 +835,57 @@ function isOldIE() {
 function getStyle(obj, attr) {
     return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
 }
+function doMove(obj, num, attr, target, endFn) {
 
+    clearInterval(obj.timer);
+    
+    num = parseInt( getStyle(obj, attr) ) < target ? num : -num;
+    
+    obj.timer = setInterval(function() {
+        
+        var speed = parseInt( getStyle(obj, attr) ) + num;
+        
+        if (speed > target && num > 0 || speed < target && num < 0) {
+            speed = target;
+        }
+        
+        obj.style[attr] = speed + 'px';
+        
+        if ( speed == target ) {
+            clearInterval(obj.timer);
+            endFn && endFn();
+        }
+        
+    }, 30);
+    
+}
+
+
+function opacity(obj, num, target, endFn) {
+    
+    clearInterval( obj.opacity );
+    
+    num = Math.floor(getStyle( obj, 'opacity' )*100) < target ? num : -num;
+    
+    obj.opacity = setInterval(function () {
+    
+        var speed = Math.floor(getStyle( obj, 'opacity' )*100) + num;
+        
+        if (speed > target && num > 0 || speed < target && num < 0) {
+            speed = target;
+        }
+        
+        obj.style.filter = 'alpha(opacity='+ speed +')';
+        obj.style.opacity = speed/100;
+        
+        if ( speed == target ) {
+            clearInterval(obj.opacity);
+            endFn && endFn();
+        }
+        
+    }, 30);
+    
+}
 //绑定hidden数据
 function BindValue(ParentId, Depth) {
 

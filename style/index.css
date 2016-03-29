@@ -18,6 +18,7 @@ body{
 .fr{
     float: right;
 }
+/*header*/
 .header{
   width: 100%;
   height: 66px;
@@ -140,6 +141,9 @@ body{
   position: absolute;
 
 }
+
+
+/*banner*/
     .banner{
         
        width: 100%;
@@ -327,26 +331,37 @@ body{
     word-break:break-all;
 }
 .article-info{
-    overflow: hidden;
-    height: 26px;
+     height: 26px;
+     z-index: 0;
 }
-.article-info span{
+/*.article-info span{
     margin-left: 15px;
-}
+}*/
 .article-view{
     background: url(../imgs/icon.png) 0 3px no-repeat;
     line-height: 26px;
     padding-left: 20px;
     display: inline-block;
+    position: relative;
+  
 
+}
+.add1{
+position: absolute;
+right: 0;top: 0;
+color: #f78585!important;
+z-index: 2;
+visibility: hidden;
 }
 .article-replay{
-   background: url(../imgs/icon.png)  0 -25px no-repeat;
-   line-height: 26px;
-   padding-left: 20px;
-  display: inline-block;
+    background: url(../imgs/icon.png) 0 -25px no-repeat;
+    line-height: 26px;
+    margin-left: 20px;
+    padding-left: 20px;
+    display: inline-block;
 
 }
+
 .article-view:hover,.article-replay:hover{
     transform:scale(1.1);
     -webkit-transform:scale(1.1);
@@ -368,6 +383,7 @@ body{
     color: #666;
     top: 4px;
     font-size: 12px;
+    margin-left: 15px;
 }
 
 .article-time i{
@@ -391,13 +407,13 @@ body{
 }
 .wp-top ul li:hover h3,.wp-top ul li:hover p{
  opacity: 1.0;
-/* -ms-filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);*/
+ -ms-filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
   filter:Alpha(opacity=100);
 }
 .wp-top ul li:hover span{
     
     opacity: 0.3;
-   /* -ms-filter:progid:DXImageTransform.Microsoft.Alpha(opacity=30);*/
+    -ms-filter:progid:DXImageTransform.Microsoft.Alpha(opacity=30);
     filter:Alpha(opacity=30);
 }
 
@@ -424,7 +440,7 @@ position: absolute;
 top: 0px;
 left: 0px;
 opacity: 0;
-/*-ms-filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);*/
+-ms-filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
 filter:Alpha(opacity=0);
 transition:all 0.5s;
 -webkit-transition:all 0.5s;
@@ -440,7 +456,7 @@ position: absolute;
 left: 10px;
 opacity: 0.0;
 filter:alpha(opacity=0);
-/*-ms-filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);*/
+-ms-filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
 filter:Alpha(opacity=0);
 transition:all 0.5s;
 -webkit-transition:all 0.5s;
@@ -845,17 +861,21 @@ a:hover{
     min-height: 40px;
     position:relative;
     top:24px;
-    /*background:#14b9D6\9;*/
-   filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f3f3f3', endColorstr='#14B9D6');
     background: -webkit-gradient(linear, 100% 100%, 50% 20%, from(#f3f3f3), to(#14B9D6), color-stop(.1,#f3f3f3));
-    background:-moz-linear-gradient(linear, 100% 100%, 50% 20%, from(#f3f3f3), to(#14B9D6), color-stop(.1,#f3f3f3));
+    background:-webkit-linear-gradient(left, #14B9D6 , #f3f3f3);
+    background:-moz-linear-gradient(left, #14B9D6 , #f3f3f3);
+    background:-ms-linear-gradient(left, #14B9D6 , #f3f3f3);
+    background:-o-linear-gradient(left, #14B9D6 , #f3f3f3);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#14B9D6', endColorstr='#f3f3f3',gradientType=1);
+   
     border: 1px solid #ccc;
-    -webkit-box-shadow: 1px 1px 4px rgba(0,0,0, 0.1);
-    -webkit-border-bottom-right-radius: 60px 5px;
+    box-shadow: 1px 1px 4px rgba(0,0,0, 0.1);
+   border-bottom-right-radius: 60px 5px;
     
 }
 
-/*.all IE .update{ background:#14B9D6\9;}*/
+.all IE .update{ 
+}
 
 
 
@@ -865,8 +885,9 @@ a:hover{
     width: 80px;
     height: 30px;
    background: -webkit-gradient(linear, 555% 20%, 0% 92%, from(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.0)), color-stop(.1,rgba(0, 0, 0, 0.2)));
-    background: -moz-gradient(linear, 555% 20%, 0% 92%, from(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.0)), color-stop(.1,rgba(0, 0, 0, 0.2)));
-    
+    background: -ms-linear-gradient(top left , rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.1));
+   background: -moz-linear-gradient(top left , rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.1));
+   background: -o-linear-gradient(top left , rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.1));
     border-left: 1px dashed rgba(0, 0, 0, 0.1);
     border-right: 1px dashed rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
@@ -932,7 +953,7 @@ a:hover{
   text-transform: uppercase;
   font-size: 1.25em;
   backface-visibility: hidden;
-  -webkit-backface-visibility:hidden; /* Chrome å’Œ Safari */
+  -webkit-backface-visibility:hidden; /* Chrome å’Safari */
 -moz-backface-visibility:hidden;  /* Firefox */
 -ms-backface-visibility:hidden;   /* Internet Explorer */
    text-align:left;
@@ -952,7 +973,7 @@ a:hover{
   -webkit-transform 1s;
   transition: opacity 1s,transform 1s;
   backface-visibility: hidden;
-  -webkit-backface-visibility:hidden; /* Chrome å’Œ Safari */
+  -webkit-backface-visibility:hidden; /* Chrome å’Safari */
   -moz-backface-visibility:hidden;  /* Firefox */
   -ms-backface-visibility:hidden;   /* Internet Explorer */
   position: relative;
@@ -1045,7 +1066,7 @@ color:#2f3238\9\0;/*IE9, IE10*/
 
 .arimg2 img {
   backface-visibility: hidden;
--webkit-backface-visibility:hidden; /* Chrome å’Œ Safari */
+-webkit-backface-visibility:hidden; /* Chrome å’Safari */
 -moz-backface-visibility:hidden;  /* Firefox */
 -ms-backface-visibility:hidden;   /* Internet Explorer */
 }
