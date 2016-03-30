@@ -534,7 +534,7 @@ function createArComment(arr) {
         str += '<li><div class="replayContentBox"><img src="' + arr[i].parent[0].userPhoto + '" class="replayTx fl"  /> <div class="w600 fr" ><span>' + arr[i].parent[0].userName + '</span><p> ' + replace_em(arr[i].parent[0].conContent) + '</p><div class="commentAction"><span >' + arr[i].parent[0].commentTime + '</span> <a class="article-replay" href="#inputBox" title="回复" onclick=BindValue(' + arr[i].parent[0].commentId + ',2)>回复</a><a class="article-view" onclick=agree(this,"comment","commentId=' + arr[i].parent[0].commentId + '")><span>' + arr[i].parent[0].hot + '</span><span class="add1">+1</span></a></div></div> </div>';
         if (child.length > 0) {
             str += '<ul class="repChildUl fr" >';
-            for (var k = 0; k < child.length; k++) {
+            for (var k = child.length-1; k >=0; k--) {
                 str += '<li><div class="replayContentBox"><img src="' + child[k].userPhoto + '" class="replayTx fl" /> <div class="w570 fr" > <span>' + child[k].userName + '</span><p>' + replace_em(child[k].conContent) + '</p> <div class="commentAction"><span >' + child[k].commentTime + '</span><a class="article-replay" title="回复" href="#inputBox" onclick=BindValue(' + arr[i].parent[0].commentId + ',2)>回复</a> <a class="article-view" onclick=agree(this,"comment","commentId=' + child[k].commentId + '")>' + child[k].hot + '</a></div></div></div></li>';
             }
             str += '</ul >'
@@ -562,7 +562,7 @@ function createMsg(pageIndex) {
             str += "<li><div class='replayContentBox'> <img src='" + arr[i].parent[0].userPhoto + "' class='replayTx fl'  /><div class='w930 fr' ><span>" + arr[i].parent[0].userName + "</span> <p>" + replace_em(arr[i].parent[0].conContent) + "</p><div class='commentAction'><span >" + arr[i].parent[0].commentTime + "</span><a class='article-replay' title='回复' href='#inputBox' onclick=BindValue(" + arr[i].parent[0].MsgId + ",2)>回复</a> <a class='article-view' onclick=agree(this,'msg','msgId=" + arr[i].parent[0].MsgId + "')><span>" + arr[i].parent[0].hot + "</span><span class='add1'>+1</span></a></div></div> </div>";
             if (child.length > 0) {
                 str += '<ul class="msgChildUl fr" >';
-                for (var k = 0; k < child.length; k++) {
+                for (var k = child.length-1; k >=0; k--) {
 
                     str += "<li><div class='replayContentBox'> <img src='" + child[k].userPhoto + "' class='replayTx fl' /><div class='w870 fr' ><span> " + child[k].userName + "</span><p>" + replace_em(child[k].conContent) + "</p><div class='commentAction'><span >" + child[k].commentTime + "</span> <a class='article-replay'  href='#inputBox' onclick=BindValue(" + arr[i].parent[0].MsgId + ",2)>回复</a> <a class='article-view' onclick=agree(this,'Msg','MsgId=" + child[k].MsgId + "')><span>" + child[k].hot + "</span><span class='add1'>+1</span></a></div></div></div></li>";
 
