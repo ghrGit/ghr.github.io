@@ -262,7 +262,7 @@ function playFn() {
         audioImgBox.timer=setInterval(function(){
             if(!flagPlay)
                 clearInterval(audioImgBox.timer);
-            audioImgBox.style.WebkitTransform = "rotate("+(++num)*1+"deg)";
+             audioImgBox.style.WebkitTransform = "rotate("+(++num)*1+"deg)";
         },50);
     }
     else {
@@ -460,7 +460,7 @@ function createArticle(articlelist, pageIndex) {
             str += "<article class='article-content'><div class='article'><div class='article-title'><h3><a href='#'>" + articleArray[i].title + "</a></h3><img src='" + articleArray[i].userPhoto + "' alt='" + articleArray[i].userName + "' class='fr'/><span class='fr'>" + articleArray[i].userName + "</span> </div><div class='clear'><figure class='";
             //i % 2 == 0 ? str += 'arimg1' : str += 'arimg2';
             str += 'arimg1' ;
-            str += "'><a href='article.html?articleId=" + articleArray[i].articleId + "'><img src='" + articleArray[i].imgSrc + "' /></a>  <figcaption ><p>微代码</p> </figcaption> </figure></div><section>" + delHtmlTag(articleArray[i].content) + "<a class='viewAll f12' href='article.html?articleId=" + articleArray[i].articleId + "'>查看全文</a></section><div class='article-info articleMemo-info'><a  class='article-replay fr' href='article.html?articleId=" + articleArray[i].articleId + "'>" + articleArray[i].articleReplayCount + "</a><a class='article-view fr'  onclick= agree(this,'article','articleId=" + articleArray[i].articleId + "')><span>" + articleArray[i].hot + "</span><span class='add1'>+1</span></a><div class='article-time arListT'><span>" + articleArray[i].articleDate + "</span><span>" + articleArray[i].wek + "</span><i></i></div></div></div></article>";
+            str += "'><a href='article.html?articleId=" + articleArray[i].articleId + "'><img src='http://t.yanchengqu.com" + articleArray[i].imgSrc + "' /></a>  <figcaption ><p>微代码</p> </figcaption> </figure></div><section>" + delHtmlTag(articleArray[i].content) + "<a class='viewAll f12' href='article.html?articleId=" + articleArray[i].articleId + "'>查看全文</a></section><div class='article-info articleMemo-info'><a  class='article-replay fr' href='article.html?articleId=" + articleArray[i].articleId + "'>" + articleArray[i].articleReplayCount + "</a><a class='article-view fr'  onclick= agree(this,'article','articleId=" + articleArray[i].articleId + "')><span>" + articleArray[i].hot + "</span><span class='add1'>+1</span></a><div class='article-time arListT'><span>" + articleArray[i].articleDate + "</span><span>" + articleArray[i].wek + "</span><i></i></div></div></div></article>";
         };
 
         doc.getElementById(articlelist).innerHTML = str;
