@@ -738,6 +738,8 @@ function addMsg() {
                 var cancleR = doc.getElementById('cancleReplay');
                 cancleR.style.display == 'block' ? alert('replay Success!') : alert('submit Success!')
                 cancleR.style.display = 'none';
+                $("#Depth").val(0);
+               $("#ParentId").val(0);
                 Myjax(api[4].GetMsgList + "?pageSize=5&pageIndex=1&sortBy=msgTime desc", function (articleArray) {
                    createMsg(1);
                 });
