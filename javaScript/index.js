@@ -578,13 +578,13 @@ function createMsg(pageIndex) {
 
 }
 //留言分页
-function getMsgPager(page) {
+function getMsgPager(page,pageIndex) {
     doc.getElementById('paginator').innerHTML = page;
     var as = doc.getElementById("paginator").getElementsByTagName("a");
     for (var i = 0; i < as.length; i++) {
         as[i].onclick = function () {
             var curIndex = this.getAttribute('curIndex');
-            createMsg(curIndex);
+            createMsg(pageIndex);
 
         }
     }
@@ -738,9 +738,9 @@ function addMsg() {
                 var cancleR = doc.getElementById('cancleReplay');
                 cancleR.style.display == 'block' ? alert('replay Success!') : alert('submit Success!')
                 cancleR.style.display = 'none';
-                Myjax(api[4].GetMsgList + "?pageSize=5&pageIndex=1&sortBy=msgTime desc", function (msgArray) {
-                    var page = msgArray.Page;
-                    getMsgPager(page);
+                Myjax(api[4].GetMsgList + "?pageSize=5&pageIndex=1&sortBy=msgTime desc", function (articleArray) {
+                    var page = JSON.parse(articleArray).Page;
+                    getMsgPager(page,1);
                 });
                 $("#saytext").val("");
 
