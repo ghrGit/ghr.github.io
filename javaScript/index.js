@@ -578,13 +578,13 @@ function createMsg(pageIndex) {
 
 }
 //留言分页
-function getMsgPager(page,pageIndex) {
+function getMsgPager(page) {
     doc.getElementById('paginator').innerHTML = page;
     var as = doc.getElementById("paginator").getElementsByTagName("a");
     for (var i = 0; i < as.length; i++) {
         as[i].onclick = function () {
             var curIndex = this.getAttribute('curIndex');
-            createMsg(pageIndex);
+            createMsg(curIndex);
 
         }
     }
