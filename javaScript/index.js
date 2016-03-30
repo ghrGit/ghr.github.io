@@ -739,8 +739,7 @@ function addMsg() {
                 cancleR.style.display == 'block' ? alert('replay Success!') : alert('submit Success!')
                 cancleR.style.display = 'none';
                 Myjax(api[4].GetMsgList + "?pageSize=5&pageIndex=1&sortBy=msgTime desc", function (articleArray) {
-                    var page = JSON.parse(articleArray).Page;
-                    getMsgPager(page,1);
+                   createMsg(1);
                 });
                 $("#saytext").val("");
 
