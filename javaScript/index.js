@@ -706,6 +706,8 @@ function addComment() {
                 var cancleR = doc.getElementById('cancleReplay');
                 cancleR.style.display == 'block' ? alert('replay Success!') : alert('submit Success!')
                 cancleR.style.display = 'none';
+                  $("#Depth").val(0);
+               $("#ParentId").val(0);
                 Myjax(api[5].GetArticalInfo + "?articleId=" + articleId, function (arrData) {
                     createArComment(arrData.Comment);
                 });
