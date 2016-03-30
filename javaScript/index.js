@@ -707,7 +707,7 @@ function addComment() {
                 cancleR.style.display == 'block' ? alert('replay Success!') : alert('submit Success!')
                 cancleR.style.display = 'none';
                 Myjax(api[5].GetArticalInfo + "?articleId=" + articleId, function (arrData) {
-                    createArComment(JSON.parse(arrData).Comment);
+                    createArComment(arrData.Comment);
                 });
                 $("#saytext").val("");
 
@@ -738,8 +738,8 @@ function addMsg() {
                 var cancleR = doc.getElementById('cancleReplay');
                 cancleR.style.display == 'block' ? alert('replay Success!') : alert('submit Success!')
                 cancleR.style.display = 'none';
-                Myjax(api[4].GetMsgList + "?pageSize=5&pageIndex=1&sortBy=msgTime desc", function (articleArray) {
-                    var page = JSON.parse(articleArray).Page;
+                Myjax(api[4].GetMsgList + "?pageSize=5&pageIndex=1&sortBy=msgTime desc", function (msgArray) {
+                    var page = msgArray.Page;
                     getMsgPager(page);
                 });
                 $("#saytext").val("");
