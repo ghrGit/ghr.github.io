@@ -278,6 +278,7 @@ body{
 .wpinner-right{
     float: right;
     overflow: hidden;
+    position:relative;
 }
 
 .article{
@@ -499,6 +500,7 @@ cursor:pointer;
   width: 244px;
   overflow: hidden;
   margin-bottom:20px;
+  height: 313px;
 
 }
 .article-hot:hover{
@@ -624,6 +626,10 @@ font-size: 13px;
   width:246px;
   margin-bottom: 20px;
 }
+.rightBar{
+width: 246px;
+}
+.div2{position:fixed;_position:absolute;top:20px;z-index:250;} 
 #bar{
   width: 136px;
   height: 2px;
@@ -713,7 +719,7 @@ bottom:  2px;
   -o-transition:all 0.3s;
 
 }
-
+.msg{background:#fff; } 
   .article-menu li,.msg li{
   border-bottom: 1px solid #ececec;
   padding: 1px 3px;
@@ -938,6 +944,7 @@ a:hover{
   text-align: center;
   cursor: pointer;
 }
+
 .clear::after {
     content: ""; 
     display: block;

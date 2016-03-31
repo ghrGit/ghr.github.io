@@ -23,16 +23,17 @@ var api = [
         CreateNavLogo();
         footHome();
         audio163Fn();
+        rightBar();
     }
 //创建菜单User 事件委托
 function CreateNav() {
- var menuNav=doc.getElementById('menu-nav');
- var as = menuNav.getElementsByTagName('a');
- var dvs = menuNav.getElementsByTagName('div');
- var ul=menuNav.getElementsByTagName('ul')[0];
- var audios = menuNav.getElementsByTagName('audio');
- var colors = ['#b9d329', '#c0ebf7', '#b9d329', '#69bcf3', '#79d9f3', '#ffae5b', '#acd180', '#fab4cc', '#6cf'];
- for (var i = 0; i < as.length; i++) {
+   var menuNav=doc.getElementById('menu-nav');
+   var as = menuNav.getElementsByTagName('a');
+   var dvs = menuNav.getElementsByTagName('div');
+   var ul=menuNav.getElementsByTagName('ul')[0];
+   var audios = menuNav.getElementsByTagName('audio');
+   var colors = ['#b9d329', '#c0ebf7', '#b9d329', '#69bcf3', '#79d9f3', '#ffae5b', '#acd180', '#fab4cc', '#6cf'];
+   for (var i = 0; i < as.length; i++) {
     as[i].index = i;
     dvs[i].style.background = colors[i];
 };
@@ -40,7 +41,7 @@ ul.onmouseover=function(ev){
     var ev=ev||event;
     var target=ev.target||ev.srcElement;
     if(target.nodeName.toLowerCase()=='a'){
-     var index = target.index;
+       var index = target.index;
             //ie8以下不支持audio
             if (isOldIE()) {
                 if (!isNaN(audios[index].duration)) {
@@ -150,8 +151,8 @@ success: function(data){
 
 // 音乐播放器
 var audio163Fn=(function(){
-   var turn = 0;
-   var flagPlay = false;
+ var turn = 0;
+ var flagPlay = false;
    var currentTime;//所剩时间
    var time,audio163,songName, singerName,audioImgBox,bar ,circle;
    var num=0;
@@ -195,8 +196,8 @@ var audio163Fn=(function(){
             var scale = L/(bar.offsetWidth - circle.offsetWidth);
             
             audio163.currentTime = scale * array[turn].timeLen;
-           currentTime=array[turn].timeLen - audio163.currentTime;
-           circle.style.left = doc.getElementById('inBar').style.width = Math.floor(bar.offsetWidth * (array[turn].timeLen - currentTime) / array[turn].timeLen) + 'px';
+            currentTime=array[turn].timeLen - audio163.currentTime;
+            circle.style.left = doc.getElementById('inBar').style.width = Math.floor(bar.offsetWidth * (array[turn].timeLen - currentTime) / array[turn].timeLen) + 'px';
             
             updateTime();
             
@@ -249,8 +250,8 @@ function playFn() {
         currentTime = array[turn].timeLen;
         updateTime();
     }
-       
-       
+
+
 
     if (flagPlay) {
         if (!isNaN(audio163.duration))
@@ -262,7 +263,7 @@ function playFn() {
         audioImgBox.timer=setInterval(function(){
             if(!flagPlay)
                 clearInterval(audioImgBox.timer);
-             audioImgBox.style.WebkitTransform = "rotate("+(++num)*1+"deg)";
+            audioImgBox.style.WebkitTransform = "rotate("+(++num)*1+"deg)";
         },50);
     }
     else {
@@ -280,7 +281,7 @@ function updateTime() {
         clearInterval(time.timer);
         nextFn();
     }
-     circle.style.left = doc.getElementById('inBar').style.width = Math.floor(bar.offsetWidth * (array[turn].timeLen - currentTime) / array[turn].timeLen) + 'px';
+    circle.style.left = doc.getElementById('inBar').style.width = Math.floor(bar.offsetWidth * (array[turn].timeLen - currentTime) / array[turn].timeLen) + 'px';
     time.innerHTML = formatSeconds(currentTime);
     currentTime = array[turn].timeLen - audio163.currentTime;
 }
@@ -335,19 +336,19 @@ var bannerSlider=(function(){
     sliderBtnLis[0].style.opacity = '1.0';
     if (!isOldIE()) sliderBtnLis[0].style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity=100)';
     for (var i = 0; i < sliderBtnLis.length; i++) {
-     sliderBtnImg[i].onload = function() {
+       sliderBtnImg[i].onload = function() {
 
         imgLength--;
 
     };
     sliderBtnLis[i].onmouseover = function () {
-       if(imgLength!=0) return;
-       clearInterval(slider.timer);
-       currentIndex = this.getAttribute('index');
-       fnSlider(slider, sliderBtnLis, "");
+     if(imgLength!=0) return;
+     clearInterval(slider.timer);
+     currentIndex = this.getAttribute('index');
+     fnSlider(slider, sliderBtnLis, "");
 
-   }
-   sliderBtnLis[i].onmouseout = function () {
+ }
+ sliderBtnLis[i].onmouseout = function () {
     sliderTimer(slider, sliderBtnLis);
 }
 };
@@ -361,7 +362,7 @@ function sliderTimer(slider, sliderBtnLis) {
                 ++currentIndex;
                 fnSlider(slider, sliderBtnLis);
             }
-        }, 5000);
+        }, 3000);
     
 }
 //banner 滑动
@@ -467,9 +468,25 @@ function createArticle(articlelist, pageIndex) {
     });
 }
 function delHtmlTag(str) {
-    return str.replace(/<[^>]+>/g, "").substring(0, 50);//去掉所有的html标记, 截取0-50个字符。； 
+    return str.replace(/<[^>]+>/g, "").substring(0, 100)+'...';//去掉所有的html标记, 截取0-50个字符。； 
 }
 
+function rightBar(){ 
+    var rightBar=doc.getElementById("rightBar"); 
+    var msg=doc.getElementById('msg');
+    var H=0,iE6; 
+    var Y=rightBar; 
+    while(Y){H+=Y.offsetTop;Y=Y.offsetParent}; 
+    iE6=window.ActiveXObject&&!window.XMLHttpRequest; 
+    if(!iE6){ 
+        window.onscroll=function() 
+        { 
+            var s=doc.body.scrollTop||doc.documentElement.scrollTop; 
+            if((s-rightBar.offsetHeight)>(H+msg.offsetHeight)){rightBar.className="rightBar div2";if(iE6){rightBar.style.top=(s-H)+"px";}} 
+            else{rightBar.className="rightBar";} 
+        }; 
+    } 
+}
 
 //文章目录栏 选项卡
 function createArticleMenu(curIndex) {
@@ -478,7 +495,7 @@ function createArticleMenu(curIndex) {
     //目录切换
     for (var i = 0; i < hs.length; i++) {
         hs[i].index = i;
-        hs[i].onclick = function () {
+        hs[i].onmouseover = function () {
             createArticleMenu(this.index);
         };
     }
@@ -510,16 +527,25 @@ function createArContent() {
     Myjax(api[5].GetArticalInfo + "?articleId=" + articleId, function (arrData) {
         var str = JSON.parse(arrData.Data);
         createArComment(arrData.Comment);
-
         replayCount.innerHTML = "评论数:" + str[0].articleReplayCount;
-
-        arContent.innerHTML = "<h3>" + str[0].title + "</h3><article>" + str[0].content + "</article><div class='article-info marginT'><span class='article-replay fr'>" + str[0].articleReplayCount + "</span><a class='article-view fr' onclick=agree(this,\'article\','articleId=" + str[0].articleId + "')><span>" + str[0].hot + "</span><span class='add1'>+1</span></a><div class='article-time t'> <span>" + str[0].articleDate + "</span><span>" + str[0].wek + "</span></div></div> <section class='post_copyright'><h4>版权归 <a href='#' title='ghr'>" + str[0].userName + "</a> 所有</h4><p>本文标题：<a href='article.html?articleId=" + str[0].articleId + "' title='" + str[0].title + "'>" + str[0].title + "</a><br>转载请务必注明出处，小生将不胜感激，谢谢! 喜欢本文或觉得本文对您有帮助，请分享给您的朋友 ^_^</p> </section>";
+        arContent.innerHTML = "<h3>" + str[0].title + "</h3><article>" + getArContentImgSrc(str[0].content)+ "</article><div class='article-info marginT'><span class='article-replay fr'>" + str[0].articleReplayCount + "</span><a class='article-view fr' onclick=agree(this,\'article\','articleId=" + str[0].articleId + "')><span>" + str[0].hot + "</span><span class='add1'>+1</span></a><div class='article-time t'> <span>" + str[0].articleDate + "</span><span>" + str[0].wek + "</span><i></i></div></div> <section class='post_copyright'><h4>版权归 <a href='#' title='ghr'>" + str[0].userName + "</a> 所有</h4><p>本文标题：<a href='article.html?articleId=" + str[0].articleId + "' title='" + str[0].title + "'>" + str[0].title + "</a><br>转载请务必注明出处，小生将不胜感激，谢谢! 喜欢本文或觉得本文对您有帮助，请分享给您的朋友 ^_^</p> </section>";
         type.innerHTML = '<span id="type"><a class="viewAll" href="index.html">首页 </a><i>&gt;</i><a class="viewAll" href="category.html?articleType=' + escape(str[0].typeName) + '">' + str[0].typeName + '</a><i>&gt;</i>' + str[0].title + '</span>';
     });
 
 };
 
-
+//获取文章图片路径
+function getArContentImgSrc(text){
+    var div=doc.createElement('div');
+    div.innerHTML=text;
+    var imgs=div.getElementsByTagName('img');
+    var src='';
+    for (var i = 0; i <imgs.length; i++) {
+        src=imgs[i].src;
+        imgs[i].src='http://t.yanchengqu.com/'+src.substr(src.indexOf('blog'));
+    };
+    return div.innerHTML;
+}
 
 
 //文章评论
@@ -706,8 +732,8 @@ function addComment() {
                 var cancleR = doc.getElementById('cancleReplay');
                 cancleR.style.display == 'block' ? alert('replay Success!') : alert('submit Success!')
                 cancleR.style.display = 'none';
-                  $("#Depth").val(0);
-               $("#ParentId").val(0);
+                $("#Depth").val(0);
+                $("#ParentId").val(0);
                 Myjax(api[5].GetArticalInfo + "?articleId=" + articleId, function (arrData) {
                     createArComment(arrData.Comment);
                 });
@@ -741,10 +767,10 @@ function addMsg() {
                 cancleR.style.display == 'block' ? alert('replay Success!') : alert('submit Success!')
                 cancleR.style.display = 'none';
                 $("#Depth").val(0);
-               $("#ParentId").val(0);
+                $("#ParentId").val(0);
                 Myjax(api[4].GetMsgList + "?pageSize=5&pageIndex=1&sortBy=msgTime desc", function (articleArray) {
-                   createMsg(1);
-                });
+                 createMsg(1);
+             });
                 $("#saytext").val("");
 
             }
