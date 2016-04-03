@@ -1,34 +1,8 @@
-/**
- * impress.js
- *
- * impress.js is a presentation tool based on the power of CSS3 transforms and transitions
- * in modern browsers and inspired by the idea behind prezi.com.
- *
- *
- * Copyright 2011-2012 Bartek Szopka (@bartaz)
- *
- * Released under the MIT and GPL Licenses.
- *
- * ------------------------------------------------
- *  author:  Bartek Szopka
- *  version: 0.5.3
- *  url:     http://bartaz.github.com/impress.js/
- *  source:  http://github.com/bartaz/impress.js/
- */
 
-/*jshint bitwise:true, curly:true, eqeqeq:true, forin:true, latedef:true, newcap:true,
-         noarg:true, noempty:true, undef:true, strict:true, browser:true */
-
-// You are one of those who like to know how things work inside?
-// Let me show you the cogs that make impress.js run...
 (function ( document, window ) {
     'use strict';
     
-    // HELPER FUNCTIONS
-    
-    // `pfx` is a function that takes a standard CSS property name as a parameter
-    // and returns it's prefixed version valid for current browser it runs in.
-    // The code is heavily inspired by Modernizr http://www.modernizr.com/
+
     var pfx = (function () {
         
         var style = document.createElement('dummy').style,
