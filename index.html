@@ -172,8 +172,11 @@
                         <ul class="hot-list"></ul>
                         <ul class="rom-list"></ul>
                     </div>
-                    
-                    <div class='player' id="player">
+                    <div  class="searching side" >
+                    <input id="query" type="text" size="27"  autocomplete="off" placeholder="搜索你喜欢的" value="">
+                    <a  onclick="return false;" id='go'></a>
+                    </div>
+                    <div class='side' id="player">
                         <audio src="" type="audio/mpeg"></audio>
                          <img src=''  id='audioImgBox' class="fl"/>
                         <div class="control">
@@ -199,7 +202,7 @@
                     </div>
 </div>
 
-                    <div class='msg player' id='msg'>
+                    <div class='msg side' id='msg'>
                         <div class="msg-title">
                             <h4>近期评论</h4>
                             <span class='cloud'>Recent Comment</span>

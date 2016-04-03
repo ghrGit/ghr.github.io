@@ -103,33 +103,31 @@
            </div>
            <div id="paginator" class="paginator"></div>
          </div>
-         <div class="wpinner-right">
-            <div id='rightBar'>
-          <section class="article-menu side" id="article-menu">
-           <hgroup class="hgroup">
-             <h4 class="article-hot">最新文章</h4>
-             <h4 class="article-new" >热门文章</h4>
-             <h4 class="article-rom">随机文章</h4>           
-           </hgroup> 
-           <ul>
-            
-           </ul>
+              <div class="wpinner-right">
+                <div id='rightBar'>
+                    <div class="article-menu side" id="article-menu">
+                        <div class="hgroup">
+                            <h4 class="article-new">最新文章</h4>
+                            <h4 class="article-hot">热门文章</h4>
+                            <h4 class="article-rom">随机文章</h4>
+                        </div>
+                        <ul></ul>
 
-           <ul class="hot-list">
-             
-           </ul>
-           <ul class="rom-list">
-            
-           </ul>
-         </section> 
-            <div class='player' id="player">
-                        <audio src="" type="audio/mpeg"></audio>
+                        <ul class="hot-list"></ul>
+                        <ul class="rom-list"></ul>
+                    </div>
+                    <div  class="searching side" >
+                    <input id="query" type="text" size="27"  autocomplete="off" placeholder="搜索你喜欢的" value="">
+                    <a  onclick="return false;" id='go'></a>
+                    </div>
+                    <div class='side' id="player">
+                        <audio  type="audio/mpeg"></audio>
                          <img src=''  id='audioImgBox' class="fl"/>
                         <div class="control">
                                <div id="singer"  class='songName'>
                                <marquee scrollamount="2" onmouseover="this.stop()" onmouseout="this.start()">
                                 <span>网易云音乐，听见好时光 </span>
-                               <span class='sub'></span>
+                               <span class='sub'>0</span>
                            </marquee>
                             </div>
                             <div id="bar">
@@ -146,20 +144,16 @@
                             </div>
                         </div>
                     </div>
-                  </div>
+</div>
 
-
-        <section class='msg player' id='msg'>
-          <div class="msg-title">
-            <h4>近期评论</h4>
-            <span class='cloud'>Recent Comment</span>
-          </div>
-          <ul id='comment'>
-
-            
-          </ul>
-        </section>
-      </div>
+                    <div class='msg side' id='msg'>
+                        <div class="msg-title">
+                            <h4>近期评论</h4>
+                            <span class='cloud'>Recent Comment</span>
+                        </div>
+                        <ul id='comment'></ul>
+                    </div>
+                </div>
     </div>
   </div>
 </div>

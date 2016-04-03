@@ -1,6 +1,6 @@
 var doc=document;
-var domain = "http://t.yanchengqu.com/BlogController/";
-//var domain = "http://localhost:4936/";
+//var domain = "http://t.yanchengqu.com/BlogController/";
+var domain = "http://localhost:4936/";
 var api = [
     { GetList: domain + "api/ArticalPart/GetList.api", type: "get" },//获取文章列表
     { GetArticalList: domain + "api/ArticalPart/GetArticalList.api", type: "get" },
@@ -25,6 +25,16 @@ var api = [
         audio163Fn();
         rightBar();
     }
+    var searchFn=(function(){
+var query=document.getElementById('query');
+var go=document.getElementById('go');
+go.onclick=function(){
+var reg=/^\s*$/;
+    if (reg.test(query.value)) return;
+    window.open('category.html?search='+escape(query.value));
+// ('article-list', 1,query.value);
+    }
+})();
 //创建菜单User 事件委托
 function CreateNav() {
    var menuNav=doc.getElementById('menu-nav');
@@ -35,7 +45,7 @@ function CreateNav() {
    var colors = ['#b9d329', '#c0ebf7', '#b9d329', '#69bcf3', '#79d9f3', '#ffae5b', '#acd180', '#fab4cc', '#6cf'];
    for (var i = 0; i < as.length; i++) {
     as[i].index = i;
-    dvs[i].style.background = colors[i];
+    dvs[i].style.background = colorcreateArticles[i];
 };
 ul.onmouseover=function(ev){
     var ev=ev||event;
@@ -292,7 +302,7 @@ return audioPlay;
 
 function getFileName(file){
     //github下来的地址有编码
-    return decodeURI(file.substring((file.lastIndexOf('/')+1)));
+    return file.substring(file.lastIndexOf('/')+1);
 }
 //返回顶部
 function returnTop() {
@@ -436,16 +446,22 @@ function createHtml(obj, arr, bigPic) {
 
 
 
-//获取文章列表
+//获取文章列表;
 function createArticle(articlelist, pageIndex) {
-    var typeName = GetQueryString('articleType');
-    if (typeName != null) {
-        doc.getElementById('type').innerHTML = '<span id="type"><a class="viewAll" href="index.html">首页 </a><i>&gt;</i><a class="viewAll" href="category.html?articleType=' + escape(typeName) + '">' + typeName + '</a></span>';
+    var typeName=GetQueryString('articleType');
+    var searchText=GetQueryString('search');
+    if(searchText!=null){
+            doc.getElementById('type').innerHTML = '<span id="type"><a class="viewAll" href="index.html">首页 </a><i>&gt;</i><em class="viewAll" >' + searchText + '</a></span>';
+      typeName = ""; 
+      }
+else if (typeName != null) {
+        doc.getElementById('type').innerHTML = '<span id="type"><a class="viewAll" href="index.html">首页 </a><i>&gt;</i><em class="viewAll">' + typeName + '</em></span>';
         typeName = escape(typeName);
+        searchText="";
     }
-    else typeName = "";
+     else {typeName = ""; searchText=""};
     var str = '';
-    Myjax(api[0].GetList + "?typeName=" + typeName + "&pageIndex=" + pageIndex, function (arr) {
+    Myjax(api[0].GetList + "?typeName=" + typeName + "&pageIndex=" + pageIndex+"&searchText=" + searchText, function (arr) {
         var articleArray = JSON.parse(arr.Data);
         var page = arr.Page;
         doc.getElementById('paginator').innerHTML = page;
