@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>关于我的</title>
+    <link rel="shortcut icon" type="image/x-icon" href="imgs/favicon.ico" />
+    <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
+    <meta name="author" content="Bartek Szopka" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+    <link href="style/impress-demo.css" rel="stylesheet" />
+     <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+
+<body class="impress-not-supported">
+
+    <div class="fallback-message">
+     <p>您的浏览器 <b>不支持</b> impress.js的展示要求, 将为您呈现简化版的展示</p>
+     <p>为了获取最佳效果，请使用最新版的<b>Chrome</b>, <b>Safari</b> 或 <b>Firefox</b> 浏览器</p>
+     <p>珍爱生命，保护地球，远离IE。</p>
+ </div>
+
+
+ <div id="impress">
+
+    <div id="welcome" class="step present active" data-x="-2000" data-y="-2500" style="position: absolute; transform: translate(-50%, -50%) translate3d(-2000px, -2500px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); transform-style: preserve-3d;">
+        <p>Hello World!</p>
+        <p>欢迎来到我的小站微代码</p>
+        <p><span class="footnote"><sup>*</sup>“我叫”<span class="name">郭会茹</span>，这里是我的小站</span></p>
+    </div>
+
+
+    <div id="me" class="step future" data-x="0" data-y="-2500" style="position: absolute; transform: translate(-50%, -50%) translate3d(0px, -2500px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); transform-style: preserve-3d;">
+        <b class="now_me">现在的我：</b>
+        <ul>
+            <li><b>职业 web开发工程师</b></li>
+            <li><b>兼 .Net 开发工程师</b></li>
+
+        </ul>
+    </div>
+
+    <div id="title" class="step" data-x="0" data-y="0" data-scale="4">
+       <p>现居于<span class="kunming">北京</span></p>
+       <p><span class="born">惯于闲看花飞花落</span></p>
+       <p><span class="study">心念天际云卷云舒</span></p>
+   </div>
+
+
+   <div id="its" class="step" data-x="850" data-y="3000" data-rotate="90" data-scale="5">
+
+      喜欢种花种草,养猫,爱旅行,爱吉他 <br/>
+      伪文艺<strong>女青年</strong></p>
+  </div>
+
+  <div id="big" class="step" data-x="3500" data-y="2100" data-rotate="180" data-scale="6">
+    <p>有时候会觉得，世界真的很小</p>
+</div>
+
+
+<div id="meet" class="step future" data-x="2825" data-y="2325" data-z="-3000" data-rotate="300" data-scale="1">
+   <p>也许我们就在某时某地</p>
+   <p>曾经擦肩而过</p>
+   <p>而你我，却浑然不觉</p>
+</div>
+
+<div id="ing" class="step" data-x="3500" data-y="-850" data-rotate="270" data-scale="6">
+    <p>但是 <b class="positioning">从此刻开始</b>, <b class="rotating">你我</b> 生便有了 <b class="scaling">交集</b> </p>
+</div>
+
+<div id="hint" class="step" data-x="6700" data-y="-300" data-scale="6">
+    <p >也许您在这里能看到的只是</p>
+    <p>中国千千万万工科生之中最普通的一员</p>
+    <p>而且所写的代码不够 <span class="rotating">完美</span></p>
+
+</div>
+
+<div id="source" class="step" data-x="6300" data-y="2000" data-rotate="20" data-scale="4">
+    <p>但是</p>
+    <p>起点虽然重要</p>
+    <p>更重要的是你所朝的方向！</p>
+    <p>技术的路上我一直在不断奔跑。</p>
+
+</div>
+
+<div id="one-more-thing" class="step" data-x="6000" data-y="4000" data-scale="2">
+    <p>one more thing...</p>
+</div>
+
+
+<div id="its-in-3d" class="step" data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+    <p><span class="have">Do</span> <span class="you">you</span> <span class="noticed">like</span>  <b>me</b>?</p>
+    <p><span class="its">谢谢</span><span class='in'>您的来访</span></p>
+    <span class="footnote">点击<a href="http://www.guohuiru.cn/">这里</a>返回mCode</span>
+</div>
+
+
+<div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
+</div>
+
+</div>
+
+
+<div class="hint">
+      <p>使用空格或方向键继续</p>
+</div>
+<script>
+    if ("ontouchstart" in document.documentElement) { 
+        document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+    }
+</script>
+
+
+<script src="javaScript/impress.js"></script>
+<script>impress().init();</script>
+
+
+
+</body>
+</html>
+
+
+
