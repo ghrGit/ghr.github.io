@@ -586,10 +586,9 @@ transition:all 0.3s;
 }
 #go{
 position: absolute;
-background: url(../imgs/1.png) no-repeat 4px 4px;
+background: url(../imgs/icon.png) no-repeat 4px -50px;
 right: 0px;
 top: 0px;
-background-size: 24px 24px;
 height: 34px;
 width: 34px;
 

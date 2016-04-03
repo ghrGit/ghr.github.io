@@ -1,6 +1,6 @@
 var doc=document;
-//var domain = "http://t.yanchengqu.com/BlogController/";
-var domain = "http://localhost:4936/";
+var domain = "http://t.yanchengqu.com/BlogController/";
+//var domain = "http://localhost:4936/";
 var api = [
     { GetList: domain + "api/ArticalPart/GetList.api", type: "get" },//获取文章列表
     { GetArticalList: domain + "api/ArticalPart/GetArticalList.api", type: "get" },
