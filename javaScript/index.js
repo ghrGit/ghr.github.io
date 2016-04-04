@@ -24,26 +24,29 @@ var api = [
         footHome();
         audio163Fn();
         rightBar();
+        search();
     }
-    var searchFn=(function(){
-var query=document.getElementById('query');
-var go=document.getElementById('go');
-go.onclick=function(){
-var reg=/^\s*$/;
-    if (reg.test(query.value)) return;
-    window.open('category.html?search='+escape(query.value));
-// ('article-list', 1,query.value);
-    }
-})();
+
+//查询
+    function search(){
+        var query=document.getElementById('query');
+        var go=document.getElementById('go');
+        go.onclick=function(){
+            var reg=/^\s*$/;
+            if (reg.test(query.value)) return;
+            window.open('category.html?search='+escape(query.value));
+}
+}
+
 //创建菜单User 事件委托
 function CreateNav() {
-   var menuNav=doc.getElementById('menu-nav');
-   var as = menuNav.getElementsByTagName('a');
-   var dvs = menuNav.getElementsByTagName('div');
-   var ul=menuNav.getElementsByTagName('ul')[0];
-   var audios = menuNav.getElementsByTagName('audio');
-   var colors = ['#b9d329', '#c0ebf7', '#b9d329', '#69bcf3', '#79d9f3', '#ffae5b', '#acd180', '#fab4cc', '#6cf'];
-   for (var i = 0; i < as.length; i++) {
+ var menuNav=doc.getElementById('menu-nav');
+ var as = menuNav.getElementsByTagName('a');
+ var dvs = menuNav.getElementsByTagName('div');
+ var ul=menuNav.getElementsByTagName('ul')[0];
+ var audios = menuNav.getElementsByTagName('audio');
+ var colors = ['#b9d329', '#c0ebf7', '#b9d329', '#69bcf3', '#79d9f3', '#ffae5b', '#acd180', '#fab4cc', '#6cf'];
+ for (var i = 0; i < as.length; i++) {
     as[i].index = i;
     dvs[i].style.background = colorcreateArticles[i];
 };
@@ -51,7 +54,7 @@ ul.onmouseover=function(ev){
     var ev=ev||event;
     var target=ev.target||ev.srcElement;
     if(target.nodeName.toLowerCase()=='a'){
-       var index = target.index;
+     var index = target.index;
             //ie8以下不支持audio
             if (isOldIE()) {
                 if (!isNaN(audios[index].duration)) {
@@ -161,8 +164,8 @@ success: function(data){
 
 // 音乐播放器
 var audio163Fn=(function(){
- var turn = 0;
- var flagPlay = false;
+   var turn = 0;
+   var flagPlay = false;
    var currentTime;//所剩时间
    var time,audio163,songName, singerName,audioImgBox,bar ,circle;
    var num=0;
@@ -346,19 +349,19 @@ var bannerSlider=(function(){
     sliderBtnLis[0].style.opacity = '1.0';
     if (!isOldIE()) sliderBtnLis[0].style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity=100)';
     for (var i = 0; i < sliderBtnLis.length; i++) {
-       sliderBtnImg[i].onload = function() {
+     sliderBtnImg[i].onload = function() {
 
         imgLength--;
 
     };
     sliderBtnLis[i].onmouseover = function () {
-     if(imgLength!=0) return;
-     clearInterval(slider.timer);
-     currentIndex = this.getAttribute('index');
-     fnSlider(slider, sliderBtnLis, "");
+       if(imgLength!=0) return;
+       clearInterval(slider.timer);
+       currentIndex = this.getAttribute('index');
+       fnSlider(slider, sliderBtnLis, "");
 
- }
- sliderBtnLis[i].onmouseout = function () {
+   }
+   sliderBtnLis[i].onmouseout = function () {
     sliderTimer(slider, sliderBtnLis);
 }
 };
@@ -451,15 +454,15 @@ function createArticle(articlelist, pageIndex) {
     var typeName=GetQueryString('articleType');
     var searchText=GetQueryString('search');
     if(searchText!=null){
-            doc.getElementById('type').innerHTML = '<span id="type"><a class="viewAll" href="index.html">首页 </a><i>&gt;</i><em class="viewAll" >' + searchText + '</a></span>';
-      typeName = ""; 
-      }
-else if (typeName != null) {
+        doc.getElementById('type').innerHTML = '<span id="type"><a class="viewAll" href="index.html">首页 </a><i>&gt;</i><em class="viewAll" >' + searchText + '</a></span>';
+        typeName = ""; 
+    }
+    else if (typeName != null) {
         doc.getElementById('type').innerHTML = '<span id="type"><a class="viewAll" href="index.html">首页 </a><i>&gt;</i><em class="viewAll">' + typeName + '</em></span>';
         typeName = escape(typeName);
         searchText="";
     }
-     else {typeName = ""; searchText=""};
+    else {typeName = ""; searchText=""};
     var str = '';
     Myjax(api[0].GetList + "?typeName=" + typeName + "&pageIndex=" + pageIndex+"&searchText=" + searchText, function (arr) {
         var articleArray = JSON.parse(arr.Data);
@@ -785,8 +788,8 @@ function addMsg() {
                 $("#Depth").val(0);
                 $("#ParentId").val(0);
                 Myjax(api[4].GetMsgList + "?pageSize=5&pageIndex=1&sortBy=msgTime desc", function (articleArray) {
-                 createMsg(1);
-             });
+                   createMsg(1);
+               });
                 $("#saytext").val("");
 
             }

@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>welcome to mCode</title>
+<meta name="viewport" content="width=640,user-scalable=no" />
+<link href="css/index.css" rel="stylesheet" />
+<script src="js/index.js"></script>		
+</head>
+<body>
+<script>
+document.body.style.height=view().h+"px";
+</script>
+<section class="page pageShow" id="welcome">
+	<div class="tree">
+    	<img src="img/tree.jpg" />
+        <div class="welcome2">
+        	<img src="img/title.png" />
+            <span class="shake"></span>
+        </div>
+        <img src="img/title2.png" class="tree3" />
+        <span class="cloud"></span>
+        <span class="cloud"></span>
+        <span class="cloud"></span>
+    </div>
+    <h1 id="logo">
+    	<img src="img/logo.png" />
+    </h1>
+</section>
+<script>
+fnLoad();
+</script>
+<section class="page" id="over">
+	<div class="tree">
+    	<img src="img/tree.jpg" />
+        <div class="welcome2">
+        	<img src="img/tranks2.png" />
+        </div>
+        <span class="cloud"></span>
+        <span class="cloud"></span>
+        <span class="cloud"></span>
+    </div>
+    <input type="button" value="重新评价" class="btn submit" />
+</section>
+<section class="page" id="form">
+	<section class="tags" id="formTag">
+        <h2>给照片加个标签</h2>
+        <label>
+                <input type="radio" name="tags" value="吃货" />
+                <span>吃货</span>
+            </label>
+            <label>
+                <input type="radio" name="tags" value="爱旅行" />
+                <span>爱旅行</span>
+            </label>
+         
+            <label>
+                <input type="radio" name="tags" value="爱音乐" />
+                <span>爱音乐</span>
+            </label>
+            <label>
+                <input type="radio" name="tags" value="萌萌哒" />
+                <span>萌萌哒</span>
+            </label>
+            <label>
+                <input type="radio" name="tags" value="猫奴" />
+                <span>猫奴</span>
+            </label>
+            <label>
+                <input type="radio" name="tags" value="IT 民工" />
+                <span>IT 民工</span>
+            </label>
+            <label>
+                <input type="radio" name="tags" value="电影爱好者" />
+                <span>电影爱好者</span>
+            </label>
+               <label>
+                <input type="radio" name="tags" value="健身达人" />
+                <span>健身达人</span>
+            </label>
+          
+    </section>
+    <textarea class="formText" placeholder="（选填：说点什么呢~~）" rows="5"></textarea>
+    <input type="tel" class="formText" placeholder="（选填：说点什么呢~~）"/>
+    <input type="button" value="上传" class="btn" />
+</section>
+<section class="page" id="news">
+	<img src="img/news.png" />
+    <h2>可以上传你的美照哦~</h2>
+    <section class="file">
+    	<label>
+        	<input type="file" />
+            <span>导入视频</span>
+        </label>
+        <label>
+        	<input type="file" />
+            <span>上传照片</span>
+        </label>
+    </section>
+    <p class="info"></p>
+</section>
+<section class="page" id="mask"></section>
+<section class="page pageShow" id="index">
+	<section class="scrollWrap">
+        <section id="tabPic">
+            <ul id="picList">
+                <li><img src="img/1.jpg" /></li>
+                <li><img src="img/2.jpg" /></li>
+                <li><img src="img/3.jpg" /></li>
+                <li><img src="img/4.jpg" /></li>
+                <li><img src="img/5.jpg" /></li>
+            </ul>
+            <section class="picMask">
+                <p>mCode</p>
+                <nav>
+                    <a href="javascript:;" class="active"></a>
+                    <a href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                </nav>
+            </section>
+        </section> 
+    
+        <a href="javascript:;" class="newsBtn">微代码</a>
+        <section id="score">
+            <h2>给小站评分呦</h2>
+            <ul class="scoreList">
+                <li>
+                    <span>综合印象</span>
+                    <nav>
+                        <a href="javascript:;"></a>
+                        <a href="javascript:;"></a>
+                        <a href="javascript:;"></a>
+                        <a href="javascript:;"></a>
+                        <a href="javascript:;"></a>
+                    </nav>
+                    <input type="hidden" value="0" />
+                </li>
+                <li>
+                    <span>感觉如何</span>
+                    <nav>
+                        <a href="javascript:;"></a>
+                        <a href="javascript:;"></a>
+                        <a href="javascript:;"></a>
+                        <a href="javascript:;"></a>
+                        <a href="javascript:;"></a>
+                    </nav>
+                    <input type="hidden" value="0" />
+                </li>
+                <li>
+                    <span>是否满意</span>
+                    <nav>
+                        <a href="javascript:;"></a>
+                        <a href="javascript:;"></a>
+                        <a href="javascript:;"></a>
+                        <a href="javascript:;"></a>
+                        <a href="javascript:;"></a>
+                    </nav>
+                    <input type="hidden" value="0" />
+                </li>
+            </ul>
+        </section>
+        <section class="tags" id="indexTag">
+            <h2>属于你的标签,是否投缘</h2>
+            <label>
+                <input type="radio" name="tags" value="吃货" />
+                <span>吃货</span>
+            </label>
+            <label>
+                <input type="radio" name="tags" value="爱旅行" />
+                <span>爱旅行</span>
+            </label>
+            <label>
+                <input type="radio" name="tags" value="健身达人" />
+                <span>健身达人</span>
+            </label>
+            <label>
+                <input type="radio" name="tags" value="爱音乐" />
+                <span>爱音乐</span>
+            </label>
+            <label>
+                <input type="radio" name="tags" value="萌萌哒" />
+                <span>萌萌哒</span>
+            </label>
+            <label>
+                <input type="radio" name="tags" value="猫奴" />
+                <span>猫奴</span>
+            </label>
+            <label>
+                <input type="radio" name="tags" value="IT 民工" />
+                <span>IT 民工</span>
+            </label>
+            <label>
+                <input type="radio" name="tags" value="电影爱好者" />
+                <span>电影爱好者</span>
+            </label>
+          
+        </section>
+        <p class="info"></p>
+        <input type="button" value="提交" class="btn submit" />
+    </section>
+</section>
+</body>
+</html>
