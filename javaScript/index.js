@@ -676,9 +676,9 @@ function UpdateMoodBar() {
     var oUl = oDiv.find('ul');
     var iH = 0;
     var arrData = [
-    { 'time': 4, 'title': '有的人浅薄，有的人金玉其表败絮其中。有一天 你会遇到一个彩虹般绚烂的人，当你遇到这个人后，会觉得其他人都只是浮云而已。' },
-    { 'time': 5, 'title': "常写代码多看书，常写博客多总结" },
-    { 'time': 6, 'title': '每天进步一点点~' }
+    { 'time': 1, 'title': '羚羊跑不过最快的狮子就会被吃掉,狮子跑不过最慢的羚羊就会被饿死。' },
+    { 'time': 2, 'title': "常写代码多看书，常写博客多总结" },
+    { 'time': 3, 'title': '每天进步一点点~' }
 
     ];
     var str = '';
