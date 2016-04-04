@@ -144,7 +144,7 @@ function fnScore()
 {
 	var oScore=id("score");
 	var aLi=oScore.getElementsByTagName("li");
-	var arr=["好失望","没有想象的那么差","很一般","良好","棒极了"];
+	var arr=["好丑","没有想象的那么丑","很一般","良好","棒极了"];
 	for(var i=0;i<aLi.length;i++)
 	{
 		fn(aLi[i]);
@@ -203,12 +203,12 @@ function fnIndex()
 			}
 			else
 			{
-				fnInfo(oInfo,"给景区添加标签");	
+				fnInfo(oInfo,"写上自己的标签");	
 			}
 		}
 		else
 		{
-			fnInfo(oInfo,"给景区评分");
+			fnInfo(oInfo,"要给小站评分哦");
 		}
 	}
 	function fnScoreChecked()
@@ -284,7 +284,7 @@ function fnNews()
 		}
 		else
 		{
-			fnInfo(oInfo,"请上传图片");
+			fnInfo(oInfo,"请上传美照~");
 		}
 	};
 }
