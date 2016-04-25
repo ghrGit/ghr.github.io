@@ -26,7 +26,7 @@ var api = [
         rightBar();
         search();
     }
-    var url='http://www.guohuiru.cn/';
+    var url='http://www.guohuiru.cn';
 Myjax('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx76173915e2553d72&redirect_uri='+url+'&response_type=code&scope=SCOPE&state=STATE#wechat_redirect ',function(data){
 alert(data);
 });
